@@ -1,5 +1,5 @@
 import { RenderedTimeAgo } from '#/ui/examples/rendered-time-ago';
-import { getWebCams } from '@/app/api/examples/getWebCams';
+import { getWebCams } from '$/api/examples/getWebCams';
 
 export default async function Home() {
   const webCams = await getWebCams();
