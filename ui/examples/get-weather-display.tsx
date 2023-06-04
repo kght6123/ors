@@ -7,7 +7,7 @@ export function WeatherDisplay() {
 	const [stationName, setStationName] = useState<string>();
 	return (
 		<>
-		<select className="mt-4" onChange={(e)=>setPeriod(e.target.value)}>
+		  <select className="mt-4" onChange={(e)=>setPeriod(e.target.value)}>
         <option value="latestdata">latestdata</option>
         <option value="latesthour">latesthour</option>
         <option value="latestday">latestday</option>
@@ -37,14 +37,14 @@ export function GetWeatherDisplay({ stationName = "cnarenal", period = "latestda
 
   return (
     <div
-      className="h-6 w-20 items-center rounded-full bg-gray-100 px-2 text-center text-sm leading-6"
+      className="h-6 w-20 items-center px-2 text-center text-sm leading-6"
     >
       {data ? (
         <>
           <span
             // https://react.dev/reference/react-dom/hydrate#suppressing-unavoidable-hydration-mismatch-errors
             suppressHydrationWarning={true}
-            className="font-semibold tabular-nums text-gray-900"
+            className="font-semibold tabular-nums text-gray-900 dark:text-gray-100"
           >
             {JSON.stringify(data)}
           </span>
