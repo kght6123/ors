@@ -28,6 +28,7 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
-    "@types/ms": "^0.7.31"
+    "@types/ms": "^0.7.31",
+    "daisyui": "^3.0.3"
   }
 }
