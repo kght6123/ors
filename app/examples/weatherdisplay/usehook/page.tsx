@@ -1,7 +1,7 @@
 import React from "react";
-import { WeatherDisplay } from '#/ui/examples/get-weather-display';
+import { WeatherDisplay } from '#/ui/examples/get-weather-display-for-usehook';
 
-// http://localhost:3000/examples/weatherdisplay
+// http://localhost:3000/examples/weatherdisplay/usehook
 
 export default async function Home() {
   return (

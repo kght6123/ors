@@ -12,6 +12,8 @@ import 'server-only';
  * @returns 
  */
 export async function getWebCams({ parent }: { parent?: string } = {}) {
+  await new Promise(resolve => setTimeout(resolve, 30 * 1000))
+
   const res = await fetch(
     `https://api.oceandrivers.com:443/v1.0/getWebCams/`,
   );

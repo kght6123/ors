@@ -1,41 +1,22 @@
 'use client';
 
 /**
- * Suspenseで遅延読み込みをするグローバル変数版（クライアント）
+ * Suspenseで遅延読み込みをするReact.useフック版（クライアント）
  */
 
-import { useState, Suspense, lazy } from 'react';
+import { useState, Suspense, lazy, use } from 'react';
 import Skeleton from '#/ui/examples/skeleton';
 
-let status = "pending";
-let result: any;
-
-function fetchWeatherDisplay({ stationName = "cnarenal", period = "latestdata" }: { stationName?: string, period?: string }) {
-  let fetching = fetch(`https://api.oceandrivers.com:443/v1.0/getWeatherDisplay/${stationName}/?period=${period}`)
-    // Fetch request has gone well
-    .then(async (res) => {
-      await new Promise(resolve => setTimeout(resolve, 5 * 1000));
-      status = "fulfilled";
-      result = await res.json();
-    })
-    // Fetch request has failed
-    .catch((error) => {
-      status = "rejected";
-      result = error;
-    });
-  return () => {
-    if (status === "pending") {
-      throw fetching; // Suspend(A way to tell React data is still fetching)
-    } else if (status === "rejected") {
-      throw result; // Result is an error
-    } else if (status === "fulfilled") {
-      return result; // Result is a fulfilled promise
-    }
-  };
+async function fetchWeatherDisplay({ stationName = "cnarenal", period = "latestdata" }: { stationName?: string, period?: string }) {
+  const res = await fetch(`https://api.oceandrivers.com:443/v1.0/getWeatherDisplay/${stationName}/?period=${period}`)
+  await new Promise(resolve => setTimeout(resolve, 5 * 1000));
+  const data = await res.json();
+  console.log(data);
+  return data;
 }
 
 export default function GetWeatherDisplay({ stationName = "cnarenal", period = "latestdata" }: { stationName?: string, period?: string }) {
-  const data = fetchWeatherDisplay({stationName, period})();
+  const data = use(fetchWeatherDisplay({stationName, period}));
   return (
     <div
       className="h-6 w-20 items-center px-2 text-center text-sm leading-6"
@@ -55,7 +36,7 @@ export default function GetWeatherDisplay({ stationName = "cnarenal", period = "
   );
 }
 
-const LazyGetWeatherDisplay = lazy(() => import("#/ui/examples/get-weather-display"));
+const LazyGetWeatherDisplay = lazy(() => import("#/ui/examples/get-weather-display-for-usehook"));
 
 export function WeatherDisplay() {
 	const [period, setPeriod] = useState<string>();

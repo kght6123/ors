@@ -1,4 +1,4 @@
-import '$/globals.css'
+// import '$/globals.css'
 // MEMO: https://nextjs.org/docs/app/building-your-application/optimizing/fonts#google-fonts
 import { Montserrat } from 'next/font/google'
 
