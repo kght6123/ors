@@ -1,5 +1,5 @@
 import React from "react";
-import { GetWeatherDisplay } from '#/ui/examples/get-weather-display';
+import GetWeatherDisplay from '#/ui/examples/get-weather-display';
 
 // http://localhost:3000/examples/cncg/latestdata
 
