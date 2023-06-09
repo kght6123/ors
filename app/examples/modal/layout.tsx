@@ -1,13 +1,11 @@
 export default function Layout(props: {
   children: React.ReactNode,
-  authModal: React.ReactNode;
+  modal: React.ReactNode;
 }) {
   return (
     <>
-      <div className="flex">
-        {props.children}
-        {props.authModal}
-      </div>
+      {props.children}
+      {props.modal}
     </>
   )
 }

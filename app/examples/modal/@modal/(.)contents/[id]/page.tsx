@@ -1,8 +1,16 @@
-'use client';
+"use client";
 import { useRouter } from 'next/navigation';
 import React from "react";
 
-export default function Login() {
+// export default function PhotoModal({ params: { id } }: { params: { id: string } }) {
+//   return (
+//     <Modal>
+//       {id}
+//     </Modal>
+//   );
+// }
+
+export default function ContentsModal({ params: { id } }: { params: { id: string } }) {
   const router = useRouter();
   return (
     <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle" open onClose={(event) => {
@@ -19,7 +27,7 @@ export default function Login() {
           <label className="label">
             <span className="label-text">login ID</span>
           </label>
-          <input type="text" placeholder="XXXXX" className="input input-bordered w-full max-w-xs" />
+          <input type="text" placeholder="XXXXX" className="input input-bordered w-full max-w-xs" value={id} />
         </div>
         <div className="form-control w-full max-w-xs">
           <label className="label">
@@ -36,4 +44,9 @@ export default function Login() {
         <button value="close">close</button>
       </form>
     </dialog>)
+// 	return (<div className="container mx-auto my-10">
+// 	<div className="w-1/2 mx-auto border border-red-700 text-9xl aspect-square flex place-content-center place-items-center">
+// 		{id}
+// 	</div>
+// </div>)
 }
