@@ -1,10 +1,9 @@
-
-export const dynamic = 'auto';
+export const dynamic = "auto";
 export const dynamicParams = true;
 export const revalidate = false;
-export const fetchCache = 'auto';
-export const runtime = 'nodejs';
-export const preferredRegion = 'auto';
+export const fetchCache = "auto";
+export const runtime = "nodejs";
+export const preferredRegion = "auto";
 
 export async function GET() {
   return new Response(`<?xml version="1.0" encoding="UTF-8" ?>
@@ -16,5 +15,5 @@ export async function GET() {
   <description>The React Framework for the Web</description>
 </channel>
  
-</rss>`)
+</rss>`);
 }

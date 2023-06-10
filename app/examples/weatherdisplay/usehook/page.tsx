@@ -1,5 +1,5 @@
 import React from "react";
-import { WeatherDisplay } from '#/ui/examples/get-weather-display-for-usehook';
+import { WeatherDisplay } from "#/ui/examples/get-weather-display-for-usehook";
 
 // http://localhost:3000/examples/weatherdisplay/usehook
 
@@ -8,5 +8,5 @@ export default async function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <WeatherDisplay />
     </main>
-  )
+  );
 }
