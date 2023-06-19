@@ -18,38 +18,38 @@ export async function POST(
   { params }: { params: { name: string } }
 ) {
   const name = params.name;
-  return NextResponse.json({ name });
-  //
-  // // クライアントの設定
-  // const clientStub = new dgraph.DgraphClientStub(
-  //   "localhost:9080",
-  //   grpc.credentials.createInsecure() as any
-  // );
-  // const dgraphClient = new dgraph.DgraphClient(clientStub);
-  // // トランザクションを開始
-  // const txn = dgraphClient.newTxn();
-  // try {
-  //   // データ（ノード）を作成
-  //   const data = {
-  //     name,
-  //   };
-  //   // データをJSONにエンコード
-  //   const mutation = new dgraph.Mutation();
-  //   mutation.setSetJson(data);
-  //   // ミューテーションをコミット
-  //   const response = await txn.mutate(mutation);
-  //   // コミット
-  //   await txn.commit();
-  //   // レスポンスを表示
-  //   console.log(response.getUidsMap().toArray());
-  //   // レスポンスを返す
-  //   return NextResponse.json({ res: response.getUidsMap().toArray() });
-  // } finally {
-  //   // トランザクションを破棄
-  //   await txn.discard();
-  //   // クライアントを閉じる
-  //   clientStub.close();
-  // }
+  // return NextResponse.json({ name });
+
+  // クライアントの設定
+  const clientStub = new dgraph.DgraphClientStub(
+    "localhost:9080"
+    // grpc.credentials.createInsecure() as any
+  );
+  const dgraphClient = new dgraph.DgraphClient(clientStub);
+  // トランザクションを開始
+  const txn = dgraphClient.newTxn();
+  try {
+    // データ（ノード）を作成
+    const data = {
+      name,
+    };
+    // データをJSONにエンコード
+    const mutation = new dgraph.Mutation();
+    mutation.setSetJson(data);
+    // ミューテーションをコミット
+    const response = await txn.mutate(mutation);
+    // コミット
+    await txn.commit();
+    // レスポンスを表示
+    console.log(response.getUidsMap().toArray());
+    // レスポンスを返す
+    return NextResponse.json({ res: response.getUidsMap().toArray() });
+  } finally {
+    // トランザクションを破棄
+    await txn.discard();
+    // クライアントを閉じる
+    clientStub.close();
+  }
   // const res = await request.json();
   // if (res === undefined) {
   //   notFound();
@@ -63,39 +63,39 @@ export async function GET(
 ) {
   // 動的パスの場合は、params.slugを使用して、URLの動的な値を取得できます。
   const name = params.name;
-  return NextResponse.json({ name });
-  // // クライアントの設定
-  // const clientStub = new dgraph.DgraphClientStub(
-  //   "localhost:9080",
-  //   grpc.credentials.createInsecure() as any
-  // );
-  // const dgraphClient = new dgraph.DgraphClient(clientStub);
-  // // トランザクションを開始
-  // const txn = dgraphClient.newTxn();
-  // try {
-  //   // クエリの作成
-  //   const query = `
-  //         query {
-  //             all(func: has(name)) {
-  //                 uid
-  //                 name
-  //             }
-  //         }
-  //     `;
-  //   // クエリの実行
-  //   const response = await txn.query(query);
-  //   // JSONにデコード
-  //   const data = response.getJson();
-  //   // 結果を表示
-  //   console.log(data);
-  //   // レスポンスを返す
-  //   return NextResponse.json({ data });
-  // } finally {
-  //   // トランザクションを破棄
-  //   await txn.discard();
-  //   // クライアントを閉じる
-  //   clientStub.close();
-  // }
+  // return NextResponse.json({ name });
+  // クライアントの設定
+  const clientStub = new dgraph.DgraphClientStub(
+    "localhost:9080"
+    // grpc.credentials.createInsecure() as any
+  );
+  const dgraphClient = new dgraph.DgraphClient(clientStub);
+  // トランザクションを開始
+  const txn = dgraphClient.newTxn();
+  try {
+    // クエリの作成
+    const query = `
+          query {
+              all(func: has(name)) {
+                  uid
+                  name
+              }
+          }
+      `;
+    // クエリの実行
+    const response = await txn.query(query);
+    // JSONにデコード
+    const data = response.getJson();
+    // 結果を表示
+    console.log(data);
+    // レスポンスを返す
+    return NextResponse.json({ data });
+  } finally {
+    // トランザクションを破棄
+    await txn.discard();
+    // クライアントを閉じる
+    clientStub.close();
+  }
 
   // TDOD: URLパラメータを取得するとき
   // const { searchParams } = new URL(request.url)
