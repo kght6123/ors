@@ -1,5 +1,4 @@
 import { RenderedTimeAgo } from "#/ui/examples/rendered-time-ago";
-import { getWebCams } from "$/api/examples/getWebCams";
 
 // http://localhost:3000/examples/parallel/hoge
 export default async function Home() {
