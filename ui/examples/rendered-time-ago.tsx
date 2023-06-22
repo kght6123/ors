@@ -37,6 +37,7 @@ export function RenderedTimeAgo({ timestamp }: { timestamp: number }) {
   return (
     <div
       className="h-6 w-20 items-center rounded-full bg-gray-100 px-2 text-center text-sm leading-6"
+      suppressHydrationWarning={true}
       title={new Date(timestamp).toISOString()}
     >
       {msAgo ? (
