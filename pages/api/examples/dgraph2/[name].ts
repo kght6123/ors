@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 import dgraph from "dgraph-js";
-import grpc from "grpc";
 
 // type Data = {
 //   name: string
