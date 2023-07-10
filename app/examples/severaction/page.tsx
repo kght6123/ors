@@ -4,8 +4,8 @@ import { authOptions } from "$/api/auth/[...nextauth]/route";
 // http://localhost:3000/examples/severaction
 
 /**
- * 従来のSSRの様な形で、サーバーサイドでActionを実行できる
- *
+ * サーバーでAction部分を実行できる（アルファ）
+ * @see https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions
  * @returns
  */
 export default function ActionForm() {
