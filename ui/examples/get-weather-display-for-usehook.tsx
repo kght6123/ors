@@ -57,13 +57,21 @@ export function WeatherDisplay() {
   const [stationName, setStationName] = useState<string>();
   return (
     <>
-      <select className="mt-4" onChange={(e) => setPeriod(e.target.value)}>
+      <select
+        title="period"
+        className="mt-4"
+        onChange={(e) => setPeriod(e.target.value)}
+      >
         <option value="latestdata">latestdata</option>
         <option value="latesthour">latesthour</option>
         <option value="latestday">latestday</option>
         <option value="dailylog">dailylog</option>
       </select>
-      <select className="mt-4" onChange={(e) => setStationName(e.target.value)}>
+      <select
+        title="stationName"
+        className="mt-4"
+        onChange={(e) => setStationName(e.target.value)}
+      >
         <option value="cnarenal">cnarenal</option>
         <option value="campastilla">campastilla</option>
         <option value="cncg">cncg</option>
