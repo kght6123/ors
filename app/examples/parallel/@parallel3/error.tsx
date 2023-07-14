@@ -16,7 +16,7 @@ export default function Error({
     <div className="bg-red-500">
       <span className="text-white">{error.message}</span>
       <div>
-        <button className="btn btn-sm btn-error" onClick={() => reset()}>
+        <button className="btn-error btn-sm btn" onClick={() => reset()}>
           Try Again
         </button>
       </div>

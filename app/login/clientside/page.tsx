@@ -30,7 +30,7 @@ function ClientSideHome() {
   }, [session]);
 
   return (
-    <main className="container flex flex-col gap-4 p-4 content-center justify-center items-center">
+    <main className="container flex flex-col content-center items-center justify-center gap-4 p-4">
       <div>
         <div>{`${JSON.stringify(session?.user)}`}</div>
         {session?.user ? <div>Logged in</div> : <div>Not logged in</div>}

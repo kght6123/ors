@@ -31,7 +31,7 @@ export default function ContentsModal({
       }}
     >
       <form method="dialog" className="modal-box">
-        <h3 className="font-bold text-lg">Login</h3>
+        <h3 className="text-lg font-bold">Login</h3>
         <div className="form-control w-full max-w-xs">
           <label className="label">
             <span className="label-text">login ID</span>
@@ -39,7 +39,7 @@ export default function ContentsModal({
           <input
             type="text"
             placeholder="XXXXX"
-            className="input input-bordered w-full max-w-xs"
+            className="input-bordered input w-full max-w-xs"
             value={id}
           />
         </div>
@@ -50,7 +50,7 @@ export default function ContentsModal({
           <input
             type="password"
             placeholder="*****"
-            className="input input-bordered w-full max-w-xs"
+            className="input-bordered input w-full max-w-xs"
           />
         </div>
         <div className="modal-action">

@@ -20,13 +20,13 @@ export default function Error({
     console.error(error);
   }, [error]);
   return (
-    <div className="fixed top-0 left-auto right-auto w-screen flex items-center content-center justify-center shadow opacity-80 p-4">
+    <div className="fixed inset-x-auto top-0 flex w-screen content-center items-center justify-center p-4 opacity-80 shadow">
       <div className="alert alert-error">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          className="stroke-white shrink-0 w-6 h-6"
+          className="h-6 w-6 shrink-0 stroke-white"
         >
           <path
             strokeLinecap="round"
@@ -37,7 +37,7 @@ export default function Error({
         </svg>
         <span className="text-white">{error.message}</span>
         <div>
-          <button className="btn btn-sm btn-error" onClick={() => reset()}>
+          <button className="btn-error btn-sm btn" onClick={() => reset()}>
             Try Again
           </button>
         </div>

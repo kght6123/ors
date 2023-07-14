@@ -10,7 +10,7 @@ export default function ContentsPage({
     <div className="container mx-auto my-10">
       <Link
         href={`/examples/modal`}
-        className="w-1/2 mx-auto border border-gray-700 text-9xl aspect-square flex place-content-center place-items-center"
+        className="mx-auto flex aspect-square w-1/2 place-content-center place-items-center border border-gray-700 text-9xl"
       >
         {id}
       </Link>

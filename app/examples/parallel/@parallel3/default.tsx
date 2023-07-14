@@ -1,6 +1,6 @@
 export default function P3default() {
   return (
-    <div className="p-4 bg-green-400 text-black">
+    <div className="bg-green-400 p-4 text-black">
       parallel3のdefaultページだよ！
     </div>
   );

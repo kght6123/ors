@@ -2,12 +2,12 @@ export default function Loading() {
   return (
     <div
       role="status"
-      className="fixed animate-pulse bg-gray-300/75 dark:bg-gray-950/75 h-[100dvh] w-screen flex items-center content-center justify-center"
+      className="fixed flex h-[100dvh] w-screen animate-pulse content-center items-center justify-center bg-gray-300/75 dark:bg-gray-950/75"
     >
       <div>
         <svg
           aria-hidden="true"
-          className="inline w-10 h-10 mr-2 animate-spin dark:fill-gray-900 fill-gray-400"
+          className="mr-2 inline h-10 w-10 animate-spin fill-gray-400 dark:fill-gray-900"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

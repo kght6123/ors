@@ -24,10 +24,10 @@ export default function ActionForm() {
         type="text"
         name="hogehoge"
         value="fooooo"
-        className="input input-primary"
+        className="input-primary input"
         placeholder="hoge"
       />
-      <button className="btn btn-primary" type="submit">
+      <button className="btn-primary btn" type="submit">
         Sever Actionを実行する
       </button>
     </form>
