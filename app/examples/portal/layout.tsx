@@ -17,7 +17,7 @@ export default function RootLayout({
       </h1>
       {children}
       <h1>
-        フッターだよ<span id="header">React Portalで置き換える</span>
+        フッターだよ<span id="footer">React Portalで置き換える</span>
       </h1>
     </>
   );
