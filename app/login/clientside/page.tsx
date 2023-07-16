@@ -1,8 +1,8 @@
 "use client";
-import { useEffect } from "react";
+import { LogoutButton, LoginButton } from "$/login/clientside";
 import { SessionProvider } from "next-auth/react";
 import { useSession } from "next-auth/react";
-import { LoginButton, LogoutButton } from "$/login/clientside";
+import { useEffect } from "react";
 
 // http://localhost:3000/login/clientside/
 

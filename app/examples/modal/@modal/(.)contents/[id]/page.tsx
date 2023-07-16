@@ -18,9 +18,6 @@ export default function ContentsModal({
   const router = useRouter();
   return (
     <dialog
-      id="my_modal_5"
-      className="modal modal-bottom sm:modal-middle"
-      open
       onClose={(event) => {
         if (event.currentTarget.returnValue === "login") {
           alert("You are logged in!");
@@ -29,17 +26,20 @@ export default function ContentsModal({
           router.back();
         }
       }}
+      className="modal modal-bottom sm:modal-middle"
+      id="my_modal_5"
+      open
     >
-      <form method="dialog" className="modal-box">
+      <form className="modal-box" method="dialog">
         <h3 className="text-lg font-bold">Login</h3>
         <div className="form-control w-full max-w-xs">
           <label className="label">
             <span className="label-text">login ID</span>
           </label>
           <input
-            type="text"
-            placeholder="XXXXX"
             className="input-bordered input w-full max-w-xs"
+            placeholder="XXXXX"
+            type="text"
             value={id}
           />
         </div>
@@ -48,9 +48,9 @@ export default function ContentsModal({
             <span className="label-text">Password</span>
           </label>
           <input
-            type="password"
-            placeholder="*****"
             className="input-bordered input w-full max-w-xs"
+            placeholder="*****"
+            type="password"
           />
         </div>
         <div className="modal-action">
@@ -60,7 +60,7 @@ export default function ContentsModal({
           </button>
         </div>
       </form>
-      <form method="dialog" className="modal-backdrop">
+      <form className="modal-backdrop" method="dialog">
         <button value="close">close</button>
       </form>
     </dialog>

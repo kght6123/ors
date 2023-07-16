@@ -1,5 +1,5 @@
-import React from "react";
 import { WeatherDisplay } from "#/ui/examples/get-weather-display-for-usehook";
+import React from "react";
 
 // http://localhost:3000/examples/weatherdisplay/usehook
 

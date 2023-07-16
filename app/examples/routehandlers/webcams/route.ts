@@ -1,5 +1,6 @@
-import { NextResponse } from "next/server";
 import type { WebCam } from "$/api/examples/webcam";
+
+import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
   const res = await fetch(`https://api.oceandrivers.com:443/v1.0/getWebCams/`, {

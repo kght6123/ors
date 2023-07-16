@@ -3,14 +3,14 @@
 import { Noto_Sans_JP } from "next/font/google";
 
 const notojp = Noto_Sans_JP({
-  weight: ["400", "500"],
-  subsets: ["latin"],
   display: "swap",
+  subsets: ["latin"],
+  weight: ["400", "500"],
 });
 
 export const metadata = {
-  title: "Root1",
   description: "root 1 app.",
+  title: "Root1",
 };
 
 export default function RootLayout({

@@ -1,6 +1,6 @@
 export type WebCam = {
-  latitude: float;
-  url: string;
-  name: string;
   longitude: float;
+  latitude: float;
+  name: string;
+  url: string;
 };

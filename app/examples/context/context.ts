@@ -1,4 +1,4 @@
-import { createContext, useState, Dispatch, SetStateAction } from "react";
+import { SetStateAction, createContext, useState, Dispatch } from "react";
 
 export type MessageContext = {
   message: [string, Dispatch<SetStateAction<string>>];

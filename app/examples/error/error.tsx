@@ -12,8 +12,8 @@ export default function Error({
   error,
   reset,
 }: {
-  error: Error;
   reset: () => void;
+  error: Error;
 }) {
   useEffect(() => {
     // Log the error to an error reporting service
@@ -23,16 +23,16 @@ export default function Error({
     <div className="fixed inset-x-auto top-0 flex w-screen content-center items-center justify-center p-4 opacity-80 shadow">
       <div className="alert alert-error">
         <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
           className="h-6 w-6 shrink-0 stroke-white"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
         >
           <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
             d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            strokeLinejoin="round"
+            strokeLinecap="round"
+            strokeWidth="2"
           ></path>
         </svg>
         <span className="text-white">{error.message}</span>

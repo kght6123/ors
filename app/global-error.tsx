@@ -13,8 +13,8 @@ export default function GlobalError({
   error,
   reset,
 }: {
-  error: Error;
   reset: () => void;
+  error: Error;
 }) {
   const inputEl = useRef<HTMLDialogElement>(null);
   useEffect(() => {
@@ -26,13 +26,13 @@ export default function GlobalError({
   return (
     <html>
       <body>
-        <dialog ref={inputEl} className="modal">
-          <form method="dialog" className="modal-box">
+        <dialog className="modal" ref={inputEl}>
+          <form className="modal-box" method="dialog">
             <h3 className="text-lg font-bold">System Error!</h3>
             <p className="py-4">{error.message}</p>
             <div className="modal-action">
               {/* if there is a button in form, it will close the modal */}
-              <button className="btn" onClick={() => reset()}>
+              <button onClick={() => reset()} className="btn">
                 Try Again
               </button>
             </div>

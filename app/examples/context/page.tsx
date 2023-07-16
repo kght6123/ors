@@ -1,7 +1,7 @@
 "use client";
+import { useMessageContext, messageContext } from "./context";
 import Child1 from "./child1";
 import Child2 from "./child2";
-import { messageContext, useMessageContext } from "./context";
 
 // http://localhost:3000/examples/context/
 
@@ -23,10 +23,10 @@ export default async function Home() {
       <label htmlFor="parent">
         parent:
         <input
-          type="text"
           onChange={(e) => setAddMessage(e.target.value)}
-          value={addMessage}
           placeholder="文字を入力してね！Context経由で子供に反映されるよ！"
+          value={addMessage}
+          type="text"
           id="parent"
         />
       </label>

@@ -1,4 +1,4 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiResponse, NextApiRequest } from "next";
 
 import dgraph from "dgraph-js";
 

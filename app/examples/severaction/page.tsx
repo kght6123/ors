@@ -1,5 +1,5 @@
-import { getServerSession } from "next-auth/next";
 import { authOptions } from "$/api/auth/[...nextauth]/route";
+import { getServerSession } from "next-auth/next";
 
 // http://localhost:3000/examples/severaction
 
@@ -21,11 +21,11 @@ export default function ActionForm() {
   return (
     <form action={onSubmit}>
       <input
-        type="text"
-        name="hogehoge"
-        value="fooooo"
         className="input-primary input"
         placeholder="hoge"
+        name="hogehoge"
+        value="fooooo"
+        type="text"
       />
       <button className="btn-primary btn" type="submit">
         Sever Actionを実行する

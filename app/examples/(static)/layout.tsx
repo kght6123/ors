@@ -1,15 +1,15 @@
-import "$/globals.css";
 // MEMO: https://nextjs.org/docs/app/building-your-application/optimizing/fonts#google-fonts
 import { Montserrat } from "next/font/google";
+import "$/globals.css";
 
 const montserrat = Montserrat({
-  subsets: ["latin"],
   display: "swap",
+  subsets: ["latin"],
 });
 
 export const metadata = {
-  title: "StaticGenerated",
   description: "Static Generated app.",
+  title: "StaticGenerated",
 };
 
 export default function RootLayout({

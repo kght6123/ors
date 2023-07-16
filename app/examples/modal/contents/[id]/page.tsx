@@ -1,5 +1,5 @@
-import React from "react";
 import Link from "next/link";
+import React from "react";
 
 export default function ContentsPage({
   params: { id },
@@ -9,8 +9,8 @@ export default function ContentsPage({
   return (
     <div className="container mx-auto my-10">
       <Link
-        href={`/examples/modal`}
         className="mx-auto flex aspect-square w-1/2 place-content-center place-items-center border border-gray-700 text-9xl"
+        href={`/examples/modal`}
       >
         {id}
       </Link>

@@ -1,7 +1,7 @@
 "use client";
-import { Suspense } from "react";
-import Skeleton from "#/ui/examples/skeleton";
 import { RenderedTimeAgo } from "#/ui/examples/rendered-time-ago";
+import Skeleton from "#/ui/examples/skeleton";
+import { Suspense } from "react";
 import useSWR from "swr";
 
 async function fetchHogeHoge(api: boolean = false) {
@@ -35,17 +35,16 @@ export function HogeHogeMain() {
         </span>
       </Suspense>
       <button
-        className="rounded-lg bg-blue-500 p-4 text-white shadow-lg"
         onClick={() => {
           fetch(`/examples/dgraph/hogehoge`, {
-            method: "POST",
+            body: JSON.stringify({
+              age: 20,
+              name: "hoge",
+            }),
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-              name: "hoge",
-              age: 20,
-            }),
+            method: "POST",
           })
             .then((res) => res.json())
             .then((data) => {
@@ -53,6 +52,7 @@ export function HogeHogeMain() {
               alert(JSON.stringify(data));
             });
         }}
+        className="rounded-lg bg-blue-500 p-4 text-white shadow-lg"
       >
         Regist Hoge
       </button>

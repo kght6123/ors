@@ -3,13 +3,13 @@
 import { Montserrat } from "next/font/google";
 
 const montserrat = Montserrat({
-  subsets: ["latin"],
   display: "swap",
+  subsets: ["latin"],
 });
 
 export const metadata = {
-  title: "Root2",
   description: "root 2 app.",
+  title: "Root2",
 };
 
 export default function RootLayout({

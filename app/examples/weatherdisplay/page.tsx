@@ -1,5 +1,5 @@
-import React from "react";
 import { WeatherDisplay } from "#/ui/examples/get-weather-display";
+import React from "react";
 
 // http://localhost:3000/examples/weatherdisplay
 

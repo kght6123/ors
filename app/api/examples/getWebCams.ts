@@ -1,9 +1,9 @@
 // import { getBaseUrl } from '#/lib/getBaseUrl';
 import { notFound } from "next/navigation";
-import type { WebCam } from "./webcam";
-
 // `server-only`は、ファイルにコードをインポートするモジュールがクライアント上で実行されないことを保証します。 この特定の API は現在機密性の高い環境変数を使用していませんが、先制的に`server-only`を追加することをお勧めします。
 import "server-only";
+
+import type { WebCam } from "./webcam";
 
 /**
  *

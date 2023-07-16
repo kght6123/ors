@@ -1,8 +1,8 @@
 import "$/globals.css";
 
 export const metadata = {
-  title: "React Portal",
   description: "React Portal app.",
+  title: "React Portal",
 };
 
 export default function RootLayout({

@@ -1,6 +1,6 @@
-import { LoginButton, LogoutButton } from "$/login/clientside";
-import { getServerSession } from "next-auth/next";
+import { LogoutButton, LoginButton } from "$/login/clientside";
 import { authOptions } from "$/api/auth/[...nextauth]/route";
+import { getServerSession } from "next-auth/next";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
