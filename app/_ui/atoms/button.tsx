@@ -7,6 +7,7 @@ export interface Ui {
   spacing?: "none" | "lg" | "md" | "sm" | "xs";
   font?: "normal" | "bold";
   rounded?: Rounded;
+  // sizeは基本、classNameで指定する
 }
 
 export type UiProps<T extends string | number | symbol> = {
