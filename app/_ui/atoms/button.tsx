@@ -9,7 +9,8 @@ export type Color =
   | "primary"
   | "danger"
   | "info"
-  | "mono";
+  | "error"
+  | "accent";
 export type Font = "normal" | "bold";
 export type Spacing = "none" | "lg" | "md" | "sm" | "xs";
 export type Size = "none" | "xs" | "sm" | "md" | "lg" | "xl";
@@ -42,16 +43,16 @@ const Base = ({ children, className, onClick }: Props) => {
 const Button = {
   Base,
   Basic: (props: Props & Ui) => {
-    const { color = "mono", rounded = "full", size = "md" } = props;
+    const { color = "secondary", rounded = "full", size = "md" } = props;
     return (
       <Base
         className={clsx(
           "text-center text-base font-bold",
           rounded === "full" && "rounded-full",
           color === "primary" &&
-            "bg-indigo-500 text-indigo-50 hover:bg-indigo-600",
-          color === "info" && "bg-blue-400 text-blue-50 hover:bg-blue-500",
-          color === "mono" && "bg-gray-200 text-gray-950 hover:bg-gray-300",
+            "bg-primary-500 text-primary-50 hover:bg-primary-600",
+          color === "secondary" &&
+            "bg-secondary-500 text-secondary-50 hover:bg-secondary-600",
           size === "md" && "h-16 w-full",
           props.className
         )}
