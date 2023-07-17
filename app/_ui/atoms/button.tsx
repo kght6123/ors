@@ -2,17 +2,25 @@ import React from "react";
 import clsx from "clsx";
 
 export type Rounded = "full" | "none";
+export type Color =
+  | "secondary"
+  | "warning"
+  | "success"
+  | "primary"
+  | "danger"
+  | "info"
+  | "mono";
+export type Font = "normal" | "bold";
+export type Spacing = "none" | "lg" | "md" | "sm" | "xs";
+export type Size = "none" | "xs" | "sm" | "md" | "lg" | "xl";
 
 export interface Ui {
-  spacing?: "none" | "lg" | "md" | "sm" | "xs";
-  font?: "normal" | "bold";
   rounded?: Rounded;
-  // sizeは基本、classNameで指定する
+  spacing?: Spacing;
+  color?: Color;
+  font?: Font;
+  size?: Size;
 }
-
-export type UiProps<T extends string | number | symbol> = {
-  [key in T]: React.FC<Props & Ui>;
-};
 
 export interface Props {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
@@ -21,24 +29,30 @@ export interface Props {
 }
 
 // ロジックは基底のButtonに集約する
-const Base: React.FC<Props> = ({ children, className, onClick }: Props) => {
+const Base = ({ children, className, onClick }: Props) => {
   return (
+    // DaisyUIのクラスはロジック側に書く、基本は上書きできるため。
     <button className={clsx(className)} onClick={onClick}>
       {children}
     </button>
   );
 };
 
-// それぞれのボタンの見た目は、基底のButtonに対して、バリエーションを追加する
-// バリエーションは、デザインの指定があればそのバリエーション毎に追加する。名称も合わせた方が良い。
-const Button: UiProps<"Primary" | "Base"> = {
+// 基底のButtonに対して、UIのバリエーションを追加する。主に機能だけ使い回ししたい場合にバリエーションをb追加する
+const Button = {
   Base,
-  Primary: (props) => {
+  Basic: (props: Props & Ui) => {
+    const { color = "mono", rounded = "full", size = "md" } = props;
     return (
       <Base
         className={clsx(
-          "bg-indigo-500 text-center text-base font-bold",
-          props.rounded === "full" && "rounded-full",
+          "text-center text-base font-bold",
+          rounded === "full" && "rounded-full",
+          color === "primary" &&
+            "bg-indigo-500 text-indigo-50 hover:bg-indigo-600",
+          color === "info" && "bg-gray-400 text-gray-50 hover:bg-gray-500",
+          color === "mono" && "bg-gray-200 text-gray-950 hover:bg-gray-300",
+          size === "md" && "h-16 w-full",
           props.className
         )}
         {...props}

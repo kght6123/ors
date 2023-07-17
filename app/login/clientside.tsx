@@ -1,19 +1,20 @@
 "use client";
 
 import { signOut, signIn } from "next-auth/react";
+import { Button } from "$/_ui/atoms/button";
 
 export const LoginButton = () => {
   return (
-    <button onClick={() => signIn()} className="btn">
+    <Button.Basic onClick={() => signIn()} color="primary">
       ログインする
-    </button>
+    </Button.Basic>
   );
 };
 
 export const LogoutButton = () => {
   return (
-    <button onClick={() => signOut()} className="btn">
+    <Button.Basic onClick={() => signOut()} color="info">
       ログアウトする
-    </button>
+    </Button.Basic>
   );
 };
