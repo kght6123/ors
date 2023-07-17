@@ -50,7 +50,7 @@ const Button = {
           rounded === "full" && "rounded-full",
           color === "primary" &&
             "bg-indigo-500 text-indigo-50 hover:bg-indigo-600",
-          color === "info" && "bg-gray-400 text-gray-50 hover:bg-gray-500",
+          color === "info" && "bg-blue-400 text-blue-50 hover:bg-blue-500",
           color === "mono" && "bg-gray-200 text-gray-950 hover:bg-gray-300",
           size === "md" && "h-16 w-full",
           props.className
