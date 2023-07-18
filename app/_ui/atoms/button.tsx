@@ -41,16 +41,13 @@ const Base = ({ children, className, onClick }: Props) => {
 
 // 基底のButtonに対して、UIのバリエーションを追加する。主に機能だけ使い回ししたい場合にバリエーションをb追加する
 const Button = {
-  // Outline 反転表示
-  // Simple 初期表示は文字のみ、hoverで背景色が表示される
-  // Underline hoverで下線が表示される
   Base,
   Basic: (props: Props & Ui) => {
     const { color = "secondary", rounded = "full", size = "md" } = props;
     return (
       <Base
         className={clsx(
-          "text-center text-base font-bold",
+          "text-center text-base font-bold transition-transform duration-50 ease-out delay-0 active:scale-95 hover:scale-105",
           rounded === "full" && "rounded-full",
           color === "primary" &&
             "bg-primary-500 text-primary-50 hover:bg-primary-600",
@@ -63,6 +60,10 @@ const Button = {
       />
     );
   },
+  // バリエーション追加の例
+  // - Outline 反転表示
+  // - Simple 初期表示は文字のみ、背景色なし、hoverで背景色が表示される
+  // - Underline 初期表示は文字のみ、背景色なし、hoverで下線が表示される
 };
 
 // それぞれのボタンの見た目は、基底のButtonに対して、バリエーションを追加する
