@@ -1,27 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-
-export type Rounded = "full" | "none";
-export type Color =
-  | "secondary"
-  | "warning"
-  | "success"
-  | "primary"
-  | "danger"
-  | "info"
-  | "error"
-  | "accent";
-export type Font = "normal" | "bold";
-export type Spacing = "none" | "lg" | "md" | "sm" | "xs";
-export type Size = "none" | "xs" | "sm" | "md" | "lg" | "xl";
-
-export interface Ui {
-  rounded?: Rounded;
-  spacing?: Spacing;
-  color?: Color;
-  font?: Font;
-  size?: Size;
-}
+import { Rounded, Color, Size } from "$/_ui";
 
 export interface Props {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
@@ -32,7 +11,6 @@ export interface Props {
 // ロジックは基底のButtonに集約する
 const Base = ({ children, className, onClick }: Props) => {
   return (
-    // DaisyUIのクラスはロジック側に書く、基本は上書きできるため。
     <button className={clsx(className)} onClick={onClick}>
       {children}
     </button>
@@ -42,21 +20,39 @@ const Base = ({ children, className, onClick }: Props) => {
 // 基底のButtonに対して、UIのバリエーションを追加する。主に機能だけ使い回ししたい場合にバリエーションをb追加する
 const Button = {
   Base,
-  Basic: (props: Props & Ui) => {
+  Basic: (
+    props: Props & {
+      // 対応しているオプションのみ追加する
+      rounded?: Rounded;
+      color?: Color;
+      size?: Size;
+    }
+  ) => {
     const { color = "secondary", rounded = "full", size = "md" } = props;
     return (
       <Base
+        {...props}
         className={clsx(
-          "text-center text-base font-bold transition-transform duration-50 ease-out delay-0 active:scale-95 hover:scale-105",
+          "text-center text-base font-bold transition-transform duration-50 ease-out delay-0 active:scale-95 focus:outline active:outline outline-offset-4 outline-2",
           rounded === "full" && "rounded-full",
           color === "primary" &&
-            "bg-primary-500 text-primary-50 hover:bg-primary-600",
+            "bg-primary-500 text-primary-50 hover:bg-primary-600 outline-primary-400",
           color === "secondary" &&
-            "bg-secondary-500 text-secondary-50 hover:bg-secondary-600",
+            "bg-secondary-500 text-secondary-50 hover:bg-secondary-600 outline-secondary-500",
           size === "md" && "h-16 w-full",
           props.className
         )}
+      />
+    );
+  },
+  Back: (props: Props) => {
+    return (
+      <Base
         {...props}
+        className={clsx(
+          "text-center text-base font-bold transition-transform duration-50 ease-out delay-0 active:scale-95 focus:outline active:outline outline-offset-4 outline-2 rounded-full border border-gray-300 w-8 h-8 outline-gray-400 flex items-center justify-center content-center",
+          props.className
+        )}
       />
     );
   },
