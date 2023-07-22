@@ -1,6 +1,6 @@
+import { Rounded, Color, Size } from "$/_ui";
 import React from "react";
 import clsx from "clsx";
-import { Rounded, Color, Size } from "$/_ui";
 
 export interface Props {
   children?: React.ReactNode;
@@ -37,8 +37,8 @@ const Container = {
   },
   Floating: (
     props: Props & {
+      position?: "bottom" | "top";
       color?: Color;
-      position?: "top" | "bottom";
     }
   ) => {
     const { color = "secondary", position } = props;
@@ -46,7 +46,7 @@ const Container = {
       <Base
         {...props}
         className={clsx(
-          "mx-auto drop-shadow-lg fixed",
+          "fixed mx-auto drop-shadow-lg",
           position === "top" && "top-0",
           position === "bottom" && "bottom-0",
           color === "primary" &&

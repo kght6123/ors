@@ -1,6 +1,6 @@
+import { Rounded, Color, Size } from "$/_ui";
 import React from "react";
 import clsx from "clsx";
-import { Rounded, Color, Size } from "$/_ui";
 
 export interface Props {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
@@ -19,6 +19,17 @@ const Base = ({ children, className, onClick }: Props) => {
 
 // 基底のButtonに対して、UIのバリエーションを追加する。主に機能だけ使い回ししたい場合にバリエーションをb追加する
 const Button = {
+  Back: (props: Props) => {
+    return (
+      <Base
+        {...props}
+        className={clsx(
+          "flex h-8 w-8 content-center items-center justify-center rounded-full border border-gray-300 text-center text-base font-bold outline-2 outline-offset-4 outline-gray-400 transition-transform delay-0 duration-75 ease-out focus:outline active:scale-95 active:outline",
+          props.className
+        )}
+      />
+    );
+  },
   Base,
   Basic: (
     props: Props & {
@@ -33,24 +44,13 @@ const Button = {
       <Base
         {...props}
         className={clsx(
-          "text-center text-base font-bold transition-transform duration-50 ease-out delay-0 active:scale-95 focus:outline active:outline outline-offset-4 outline-2",
+          "text-center text-base font-bold outline-2 outline-offset-4 transition-transform delay-0 duration-75 ease-out focus:outline active:scale-95 active:outline",
           rounded === "full" && "rounded-full",
           color === "primary" &&
-            "bg-primary-500 text-primary-50 hover:bg-primary-600 outline-primary-400",
+            "bg-primary-500 text-primary-50 outline-primary-400 hover:bg-primary-600",
           color === "secondary" &&
-            "bg-secondary-500 text-secondary-50 hover:bg-secondary-600 outline-secondary-500",
+            "bg-secondary-500 text-secondary-50 outline-secondary-500 hover:bg-secondary-600",
           size === "md" && "h-16 w-full",
-          props.className
-        )}
-      />
-    );
-  },
-  Back: (props: Props) => {
-    return (
-      <Base
-        {...props}
-        className={clsx(
-          "text-center text-base font-bold transition-transform duration-50 ease-out delay-0 active:scale-95 focus:outline active:outline outline-offset-4 outline-2 rounded-full border border-gray-300 w-8 h-8 outline-gray-400 flex items-center justify-center content-center",
           props.className
         )}
       />
