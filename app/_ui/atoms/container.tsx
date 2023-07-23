@@ -7,12 +7,12 @@ export interface Props {
   className?: string;
 }
 
-// ロジックは基底のButtonに集約する
+// ロジックは基底に集約する
 const Base = ({ children, className }: Props) => {
   return <div className={clsx(className)}>{children}</div>;
 };
 
-// 基底のButtonに対して、UIのバリエーションを追加する。主に機能だけ使い回ししたい場合にバリエーションをb追加する
+// 基底に対して、UIのバリエーションを追加する。主に機能だけ使い回ししたい場合にバリエーションをb追加する
 const Container = {
   Base,
   Basic: (
