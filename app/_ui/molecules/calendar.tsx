@@ -1,15 +1,18 @@
-import { Rounded, Color, Size } from "$/_ui";
+"use client";
 import React from "react";
 import clsx from "clsx";
 
+// TODO: この辺りの問題があるため、他のatomなどと同様にオブジェクトで複数コンポーネントを返せない https://github.com/vercel/next.js/issues/41940
+
 export interface Props {
+  onChange?: (day: number) => void;
   className?: string;
   month: number;
   year: number;
   day: number;
 }
 
-const Base = ({ className, day, month, year }: Props) => {
+const Calendar = ({ className, day, month, onChange, year }: Props) => {
   const firstDay = new Date(year, month - 1, 1).getDay();
   const daysArray = Array.from(
     { length: new Date(year, month, 0).getDate() },
@@ -34,45 +37,24 @@ const Base = ({ className, day, month, year }: Props) => {
           <div key={`empty-${day}`}>&nbsp;</div>
         ))}
         {daysArray.map((value, index) => (
-          <div
+          <button
             className={clsx(
               (firstDay + index + 1) % 7 === 0 && "text-blue-600",
               (firstDay + index + 1) % 7 === 1 && "text-red-600",
-              value === day &&
-                "relative before:absolute before:h-9 before:w-9 before:rounded-full before:bg-indigo-600 before:text-white"
+              // 選択した日付を強調する
+              "aria-pressed:relative aria-pressed:after:absolute aria-pressed:after:-left-3 aria-pressed:after:top-[-0.55rem] aria-pressed:after:flex aria-pressed:after:h-10 aria-pressed:after:w-10 aria-pressed:after:content-center aria-pressed:after:items-center aria-pressed:after:justify-center aria-pressed:after:rounded-full aria-pressed:after:bg-indigo-600 aria-pressed:after:text-lg aria-pressed:after:text-white aria-pressed:after:content-[attr(data-day)]"
             )}
+            onClick={() => onChange && onChange(value)}
+            aria-pressed={value === day}
+            data-day={value}
             key={value}
           >
             {value}
-          </div>
+          </button>
         ))}
       </div>
     </div>
   );
-};
-
-const Calendar = {
-  Base,
-  Basic: (
-    props: Props & {
-      color?: Color;
-    }
-  ) => {
-    const { color = "secondary" } = props;
-    return (
-      <Base
-        {...props}
-        className={clsx(
-          "container",
-          color === "primary" &&
-            "bg-primary-50 text-primary-950 hover:bg-primary-100",
-          color === "secondary" &&
-            "bg-secondary-50 text-secondary-950 hover:bg-secondary-100",
-          props.className
-        )}
-      />
-    );
-  },
 };
 
 export { Calendar };
