@@ -3,11 +3,11 @@ import React from "react";
 
 export const Fixture = {
   accent: (
-    <Select.None>
+    <Select.Transparent>
       <Option value={6}>7月</Option>
       <Option value={7}>8月</Option>
       <Option value={8}>9月</Option>
-    </Select.None>
+    </Select.Transparent>
   ),
 };
 

@@ -1,3 +1,5 @@
+import { ChevronUpDownIcon } from "@heroicons/react/20/solid";
+import { Size } from "$/_ui";
 import React from "react";
 import clsx from "clsx";
 
@@ -34,16 +36,24 @@ const Option = ({
 
 const Select = {
   Base,
-  None: (props: Props & {}) => {
-    const {} = props;
+  Transparent: (props: Props & { size?: Size }) => {
+    const { size = "xl" } = props;
     return (
-      <Base
-        {...props}
-        className={clsx(
-          "appearance-none bg-gray-500 px-2 pr-6",
-          props.className
-        )}
-      />
+      <div className="relative w-min">
+        <Base
+          {...props}
+          className={clsx(
+            "block w-min appearance-none bg-transparent px-2",
+            size === "sm" && "pr-4 text-sm",
+            size === "xl" && "pr-6 text-xl",
+            size === "5xl" && "pr-9 text-5xl",
+            props.className
+          )}
+        />
+        <div className="pointer-events-none absolute right-0 top-0 h-full">
+          <ChevronUpDownIcon className="h-full text-gray-200" />
+        </div>
+      </div>
     );
   },
 };

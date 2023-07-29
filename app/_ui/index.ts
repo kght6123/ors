@@ -23,4 +23,14 @@ export type Tone =
   | "50";
 export type Font = "normal" | "bold";
 export type Spacing = "none" | "lg" | "md" | "sm" | "xs";
-export type Size = "none" | "xs" | "sm" | "md" | "lg" | "xl";
+export type Size =
+  | "none"
+  | "5xl"
+  | "4xl"
+  | "3xl"
+  | "2xl"
+  | "xl"
+  | "lg"
+  | "md"
+  | "sm"
+  | "xs";
