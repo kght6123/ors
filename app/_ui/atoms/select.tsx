@@ -43,15 +43,15 @@ const Select = {
         <Base
           {...props}
           className={clsx(
-            "block w-min appearance-none bg-transparent px-2",
+            "block w-min appearance-none bg-transparent px-2  outline-2 outline-offset-4 outline-secondary-500 placeholder:text-secondary-400 hover:bg-secondary-950/25 focus:outline",
             size === "sm" && "pr-4 text-sm",
-            size === "xl" && "pr-6 text-xl",
+            size === "xl" && "pr-6 text-xl font-black",
             size === "5xl" && "pr-9 text-5xl",
             props.className
           )}
         />
         <div className="pointer-events-none absolute right-0 top-0 h-full">
-          <ChevronUpDownIcon className="h-full text-gray-200" />
+          <ChevronUpDownIcon className="h-full text-secondary-200" />
         </div>
       </div>
     );

@@ -1,4 +1,5 @@
 "use client";
+import { Select, Option } from "$/_ui/atoms/select";
 import React from "react";
 import clsx from "clsx";
 
@@ -21,10 +22,35 @@ const Calendar = ({ className, day, month, onChange, year }: Props) => {
 
   return (
     <div className={clsx("relative p-3", className)}>
-      <div className="absolute top-0 text-sm font-black text-gray-500">
-        {year}年
+      <div
+        className="absolute
+      top-3 text-sm font-black text-gray-500"
+      >
+        <Select.Transparent
+          onChange={(e) => onChange && onChange(Number(e.target.value))}
+          value={year}
+          size="sm"
+        >
+          {Array.from({ length: 10 }, (_, i) => year + i).map((value) => (
+            <Option value={value} key={value}>
+              {value}年
+            </Option>
+          ))}
+        </Select.Transparent>
       </div>
-      <div className="mb-6 text-center text-xl font-black">{month}月</div>
+      <div className="mb-6 flex content-center items-center justify-center">
+        <Select.Transparent
+          onChange={(e) => onChange && onChange(Number(e.target.value))}
+          value={month}
+          size="xl"
+        >
+          {Array.from({ length: 12 }, (_, i) => i + 1).map((value) => (
+            <Option value={value} key={value}>
+              {value}月
+            </Option>
+          ))}
+        </Select.Transparent>
+      </div>
       <div className="grid grid-cols-7 place-content-center place-items-center text-sm font-black text-gray-700 [&>*]:h-14">
         <div className="text-red-600">日</div>
         <div>月</div>
