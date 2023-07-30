@@ -37,7 +37,7 @@ const Option = ({
 const Select = {
   Base,
   Transparent: (props: Props & { size?: Size }) => {
-    const { size = "xl" } = props;
+    const { size = "sm" } = props;
     return (
       <div className="relative w-min">
         <Base
