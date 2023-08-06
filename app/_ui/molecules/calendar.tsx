@@ -104,6 +104,7 @@ const Calendar = {
   Base,
   Now: (props: {
     onChange?: (year: number, month: number, day: number) => void;
+    className?: string;
   }) => {
     const now = new Date();
     const [year, setYear] = useState(now.getFullYear());
@@ -117,6 +118,7 @@ const Calendar = {
           setDay(day);
           props.onChange && props.onChange(year, month, day);
         }}
+        className={props.className}
         month={month}
         year={year}
         day={day}

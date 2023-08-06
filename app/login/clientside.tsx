@@ -13,7 +13,7 @@ export const LoginButton = () => {
 
 export const LogoutButton = () => {
   return (
-    <Button.Basic onClick={() => signOut()} color="info">
+    <Button.Basic onClick={() => signOut()} color="secondary">
       ログアウトする
     </Button.Basic>
   );
