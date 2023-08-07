@@ -1,7 +1,7 @@
 "use client";
 
+import { useEffect, useState, useRef } from "react";
 import ms from "ms";
-import { useEffect, useRef, useState } from "react";
 
 // https://github.com/streamich/react-use/blob/master/src/useInterval.ts
 const useInterval = (callback: Function, delay?: number | null) => {
@@ -36,20 +36,20 @@ export function RenderedTimeAgo({ timestamp }: { timestamp: number }) {
 
   return (
     <div
-      className="h-6 w-20 items-center rounded-full bg-gray-100 px-2 text-center text-sm leading-6"
-      suppressHydrationWarning={true}
+      className="h-6 w-20 items-center rounded-full bg-slate-100 px-2 text-center text-sm leading-6"
       title={new Date(timestamp).toISOString()}
+      suppressHydrationWarning={true}
     >
       {msAgo ? (
         <>
           <span
+            className="font-semibold tabular-nums text-slate-900"
             // https://react.dev/reference/react-dom/hydrate#suppressing-unavoidable-hydration-mismatch-errors
             suppressHydrationWarning={true}
-            className="font-semibold tabular-nums text-gray-900"
           >
             {msAgo >= 1000 ? ms(msAgo) : "0s"}
           </span>{" "}
-          <span className="text-gray-600">ago</span>
+          <span className="text-slate-600">ago</span>
         </>
       ) : null}
     </div>

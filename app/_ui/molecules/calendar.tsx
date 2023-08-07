@@ -31,7 +31,7 @@ const Base = ({ className, day, month, onChange, year }: Props) => {
     <div className={clsx("relative p-3", className)}>
       <div
         className="absolute
-      top-3 text-sm font-black text-gray-500"
+      top-3 text-sm font-black text-slate-500"
       >
         <Select.Transparent
           onChange={(e) => {
@@ -66,7 +66,7 @@ const Base = ({ className, day, month, onChange, year }: Props) => {
           ))}
         </Select.Transparent>
       </div>
-      <div className="grid grid-cols-7 place-content-center place-items-center text-sm font-black text-gray-700 [&>*]:h-14">
+      <div className="grid grid-cols-7 place-content-center place-items-center text-sm font-black text-slate-700 [&>*]:h-14">
         <div className="text-red-600">日</div>
         <div>月</div>
         <div>火</div>

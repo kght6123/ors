@@ -24,7 +24,7 @@ const Button = {
       <Base
         {...props}
         className={clsx(
-          "flex h-8 w-8 content-center items-center justify-center rounded-full border border-gray-300 text-center text-base font-bold outline-2 outline-offset-4 outline-gray-400 transition-transform delay-0 duration-75 ease-out focus:outline active:scale-95 active:outline",
+          "flex h-8 w-8 content-center items-center justify-center rounded-full border border-slate-300 text-center text-base font-bold outline-2 outline-offset-4 outline-slate-400 transition-transform delay-0 duration-75 ease-out focus:outline active:scale-95 active:outline",
           props.className
         )}
       />

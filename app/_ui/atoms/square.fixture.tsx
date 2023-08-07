@@ -9,7 +9,7 @@ export const Fixture = {
       color="secondary"
       tone="50"
     >
-      <div className="flex h-full items-center pl-3 text-sm font-bold text-gray-500">
+      <div className="flex h-full items-center pl-3 text-sm font-bold text-slate-500">
         10:00
       </div>
       <div className="p-[.3rem]">

@@ -39,10 +39,10 @@ const Base = ({
             : localeTimeString.substring(0, 4);
         return (
           <li
-            className="flex flex-row content-center items-center px-4 py-2 odd:bg-gray-50 even:bg-gray-100"
+            className="flex flex-row content-center items-center px-4 py-2 odd:bg-slate-50 even:bg-slate-100"
             key={index}
           >
-            <div className="w-16 pr-4 text-right text-sm font-black text-gray-500">
+            <div className="w-16 pr-4 text-right text-sm font-black text-slate-500">
               {time}
             </div>
             <div className="w-full">
@@ -53,7 +53,7 @@ const Base = ({
                 </div>
               ) : disabledTimeList !== undefined &&
                 disabledTimeList.includes(time) ? (
-                <div className="flex h-12 content-center items-center justify-center rounded-xl bg-gray-400 text-sm font-bold text-white">
+                <div className="flex h-12 content-center items-center justify-center rounded-xl bg-slate-400 text-sm font-bold text-white">
                   予約不可
                 </div>
               ) : value !== undefined && value === time ? (

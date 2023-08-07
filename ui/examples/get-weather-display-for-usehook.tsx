@@ -8,8 +8,8 @@ import { useState, Suspense, lazy, use } from "react";
 import Skeleton from "#/ui/examples/skeleton";
 
 async function fetchWeatherDisplay({
-  stationName = "cnarenal",
   period = "latestdata",
+  stationName = "cnarenal",
 }: {
   stationName?: string;
   period?: string;
@@ -24,21 +24,21 @@ async function fetchWeatherDisplay({
 }
 
 export default function GetWeatherDisplay({
-  stationName = "cnarenal",
   period = "latestdata",
+  stationName = "cnarenal",
 }: {
   stationName?: string;
   period?: string;
 }) {
-  const data = use(fetchWeatherDisplay({ stationName, period }));
+  const data = use(fetchWeatherDisplay({ period, stationName }));
   return (
     <div className="h-6 w-20 items-center px-2 text-center text-sm leading-6">
       {data ? (
         <>
           <span
+            className="font-semibold tabular-nums text-slate-900 dark:text-slate-100"
             // https://react.dev/reference/react-dom/hydrate#suppressing-unavoidable-hydration-mismatch-errors
             suppressHydrationWarning={true}
-            className="font-semibold tabular-nums text-gray-900 dark:text-gray-100"
           >
             {JSON.stringify(data)}
           </span>
@@ -58,9 +58,9 @@ export function WeatherDisplay() {
   return (
     <>
       <select
-        title="period"
-        className="mt-4"
         onChange={(e) => setPeriod(e.target.value)}
+        className="mt-4"
+        title="period"
       >
         <option value="latestdata">latestdata</option>
         <option value="latesthour">latesthour</option>
@@ -68,9 +68,9 @@ export function WeatherDisplay() {
         <option value="dailylog">dailylog</option>
       </select>
       <select
+        onChange={(e) => setStationName(e.target.value)}
         title="stationName"
         className="mt-4"
-        onChange={(e) => setStationName(e.target.value)}
       >
         <option value="cnarenal">cnarenal</option>
         <option value="campastilla">campastilla</option>

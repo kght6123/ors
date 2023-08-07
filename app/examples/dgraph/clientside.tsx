@@ -24,7 +24,7 @@ export function HogeHogeMain() {
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <RenderedTimeAgo timestamp={Date.now()} />
       <Suspense fallback={<Skeleton />}>
-        <span className="font-semibold tabular-nums text-gray-900 dark:text-gray-100">
+        <span className="font-semibold tabular-nums text-slate-900 dark:text-slate-100">
           {error ? (
             "faild to load!!!"
           ) : isLoading ? (
