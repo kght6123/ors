@@ -38,6 +38,7 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
+    "@svgr/webpack": "^8.0.1",
     "@types/google-protobuf": "^3.15.6",
     "@types/ms": "^0.7.31",
     "@types/protobufjs": "^6.0.0",

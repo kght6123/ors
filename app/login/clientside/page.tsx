@@ -34,7 +34,11 @@ function ClientSideHome() {
       <div>
         <div>{`${JSON.stringify(session?.user)}`}</div>
         {session?.user ? <div>Logged in</div> : <div>Not logged in</div>}
-        {session?.user ? <LogoutButton /> : <LoginButton />}
+        {session?.user ? (
+          <LogoutButton>ログアウトする</LogoutButton>
+        ) : (
+          <LoginButton>ログイン</LoginButton>
+        )}
       </div>
     </main>
   );
