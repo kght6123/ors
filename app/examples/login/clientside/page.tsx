@@ -1,5 +1,8 @@
 "use client";
-import { LogoutButton, LoginButton } from "$/login/clientside";
+import {
+  LogoutButton,
+  LoginButton,
+} from "$/examples/login/clientside/_clientside";
 import { SessionProvider } from "next-auth/react";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
