@@ -39,7 +39,7 @@ const Base = ({
             : localeTimeString.substring(0, 4);
         return (
           <li
-            className="flex flex-row content-center items-center px-4 py-2 odd:bg-slate-50 even:bg-slate-100"
+            className="flex flex-row content-center items-center px-4 py-2 odd:bg-slate-50/80 even:bg-slate-100/80 dark:odd:bg-slate-900/80 dark:even:bg-slate-950/80"
             key={index}
           >
             <div className="w-16 pr-4 text-right text-sm font-black text-slate-500">

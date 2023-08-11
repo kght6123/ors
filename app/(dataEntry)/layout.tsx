@@ -1,16 +1,8 @@
 import { ChevronLeftIcon } from "@heroicons/react/20/solid";
 import { Container } from "$/_ui/atoms/container";
 import { Button } from "$/_ui/atoms/button";
-import { Inter } from "next/font/google";
+import { WorldMap } from "$/WorldMap";
 import clsx from "clsx";
-import "$/globals.css";
-
-import { WorldMap } from "../WorldMap";
-
-export const metadata = {
-  description: "Simple Online Reservation App.",
-  title: "Online Reservation System",
-};
 
 export default function RootLayout({
   children,
