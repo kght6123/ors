@@ -5,11 +5,16 @@ import clsx from "clsx";
 export interface Props {
   children?: React.ReactNode;
   className?: string;
+  id?: string;
 }
 
 // ロジックは基底に集約する
-const Base = ({ children, className }: Props) => {
-  return <div className={clsx(className)}>{children}</div>;
+const Base = ({ children, className, id }: Props) => {
+  return (
+    <div className={clsx(className)} id={id}>
+      {children}
+    </div>
+  );
 };
 
 // 基底に対して、UIのバリエーションを追加する。主に機能だけ使い回ししたい場合にバリエーションをb追加する
