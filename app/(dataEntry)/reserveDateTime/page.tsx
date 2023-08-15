@@ -3,7 +3,7 @@ import { CalendarNow } from "$/_ui/molecules/calendar";
 
 import HeaderFooter from "./_headerFooter";
 
-export default async function Home() {
+export default async function ReserveDateTime() {
   return (
     <>
       <HeaderFooter />

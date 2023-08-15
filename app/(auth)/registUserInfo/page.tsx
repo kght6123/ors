@@ -5,7 +5,7 @@ import { Input } from "$/_ui/atoms/input";
 import Link from "next/link";
 import React from "react";
 
-export default async function Home() {
+export default async function RegistUserInfo() {
   return (
     <>
       <Circle.Basic className="relative h-28 w-28" color="secondary">
@@ -14,7 +14,7 @@ export default async function Home() {
       <div className="flex flex-col items-center gap-4">
         <h1 className="text-2xl font-black">予約情報登録</h1>
         <p className="text-xs">
-          予約した人の氏名、電話番号を入力し、予約情報を登録します。
+          氏名、電話番号を入力して、予約情報を登録します。
         </p>
       </div>
       <div className="space-y-1 pb-4">

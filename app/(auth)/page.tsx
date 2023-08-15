@@ -3,8 +3,6 @@ import { authOptions } from "$/api/auth/[...nextauth]/route";
 import { LogoutButton, LoginButton } from "$/_clientside";
 import { getServerSession } from "next-auth/next";
 import { Link } from "$/_ui/atoms/link";
-import { WorldMap } from "$/WorldMap";
-import clsx from "clsx";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
