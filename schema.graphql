@@ -1,0 +1,13 @@
+type User {
+  email: String! @id
+  name: String
+  tel: String
+  reserveds: [ReserveDateTime] @hasInverse(field: user)
+}
+
+type ReserveDateTime {
+  id: ID!
+  date: String!
+  time: String!
+  user: User!
+}

@@ -1,3 +1,4 @@
+import { ApolloNextAppProviderWrapper } from "$/_lib/NextSSRApolloClientWrapper";
 import { Inter } from "next/font/google";
 import clsx from "clsx";
 import "$/globals.css";
@@ -16,7 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className={clsx(inter.className)}>{children}</body>
+      <body className={clsx(inter.className)}>
+        <ApolloNextAppProviderWrapper>{children}</ApolloNextAppProviderWrapper>
+      </body>
     </html>
   );
 }

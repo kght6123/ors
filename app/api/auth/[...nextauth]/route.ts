@@ -1,18 +1,20 @@
-import type { AdapterUser, Adapter } from "next-auth/adapters";
-
+// import type { AdapterUser, Adapter } from "next-auth/adapters";
 // import EmailProvider from "next-auth/providers/email";
 import CredentialsProvider from "next-auth/providers/credentials";
+// import { DgraphAdapter } from "@auth/dgraph-adapter";
+import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import NextAuth, { NextAuthOptions } from "next-auth";
-import { DgraphAdapter } from "@auth/dgraph-adapter";
+import { db } from "#/schema";
 
 export const authOptions: NextAuthOptions = {
-  adapter: DgraphAdapter({
-    // you can omit the following properties if you are running an unsecure schema
-    authHeader: process.env.AUTH_HEADER || "Authorization", // default: "Authorization",
-    authToken: process.env.DGRAPH_GRAPHQL_KEY || "NextAuth",
-    endpoint: process.env.DGRAPH_GRAPHQL_ENDPOINT || "localhost:9080",
-    jwtSecret: process.env.NEXTAUTH_SECRET || "",
-  }) as Adapter,
+  // adapter: DgraphAdapter({
+  //   // you can omit the following properties if you are running an unsecure schema
+  //   authHeader: process.env.AUTH_HEADER || "Authorization", // default: "Authorization",
+  //   authToken: process.env.DGRAPH_GRAPHQL_KEY || "NextAuth",
+  //   endpoint: process.env.DGRAPH_GRAPHQL_ENDPOINT || "localhost:9080",
+  //   jwtSecret: process.env.NEXTAUTH_SECRET || "",
+  // }) as Adapter,
+  adapter: DrizzleAdapter(db),
   callbacks: {
     jwt: async ({ account, profile, token, user }) => {
       if (user) {
