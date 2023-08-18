@@ -54,11 +54,14 @@ export const authOptions: NextAuthOptions = {
     // }),
     CredentialsProvider({
       async authorize(credentials) {
+        // TODO: データベースなどからのユーザ情報取得を書く
         const users = [
           { email: "user1@example.com", id: "1", password: "password1" },
           { email: "user2@example.com", id: "2", password: "password2" },
           { email: "abc@abc", id: "3", password: "123" },
         ];
+        // !!! ユーザ認証をする !!!
+        // パスワードのハッシュやソルトなどは全く考慮していないので、各自、実装すること
         const user = users.find((user) => user.email === credentials?.email);
         if (user && user?.password === credentials?.password) {
           return {

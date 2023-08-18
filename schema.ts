@@ -6,6 +6,7 @@ import {
   integer,
   text,
 } from "drizzle-orm/sqlite-core";
+import { migrate } from "drizzle-orm/better-sqlite3/migrator";
 import { drizzle } from "drizzle-orm/better-sqlite3";
 import Database from "better-sqlite3";
 
@@ -61,3 +62,5 @@ export const verificationTokens = sqliteTable(
     compoundKey: primaryKey(vt.identifier, vt.token),
   })
 );
+
+migrate(db, { migrationsFolder: "./drizzle" });
