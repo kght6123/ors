@@ -29,7 +29,7 @@ export default async function Home() {
         {user ? "ログイン中" : "利用するにはログインまたは新規登録をして下さい"}
       </div>
       <div className="hidden break-all text-xs">{`${JSON.stringify(
-        user
+        session
       )}`}</div>
     </>
   );
