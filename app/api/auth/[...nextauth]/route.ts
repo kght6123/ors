@@ -1,9 +1,9 @@
 // import type { AdapterUser, Adapter } from "next-auth/adapters";
-// import EmailProvider from "next-auth/providers/email";
-import CredentialsProvider from "next-auth/providers/credentials";
+// import CredentialsProvider from "next-auth/providers/credentials";
 // import { DgraphAdapter } from "@auth/dgraph-adapter";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import NextAuth, { NextAuthOptions } from "next-auth";
+import EmailProvider from "next-auth/providers/email";
 import { db } from "#/schema";
 
 export const authOptions: NextAuthOptions = {
@@ -44,50 +44,70 @@ export const authOptions: NextAuthOptions = {
       ? true
       : Boolean(process.env.NEXTAUTH_DEBUG),
   providers: [
-    // EmailProvider({
-    //   server: process.env.EMAIL_SERVER,
-    //   from: process.env.EMAIL_FROM,
-    //   // maxAge: 24 * 60 * 60, // How long email links are valid for (default 24h)
-    //   sendVerificationRequest: async (params) => {
-    //     console.log("sendVerificationRequest", params);
-    //   },
-    // }),
-    CredentialsProvider({
-      async authorize(credentials) {
-        // TODO: データベースなどからのユーザ情報取得を書く
-        const users = [
-          { email: "user1@example.com", id: "1", password: "password1" },
-          { email: "user2@example.com", id: "2", password: "password2" },
-          { email: "abc@abc", id: "3", password: "123" },
-        ];
-        // !!! ユーザ認証をする !!!
-        // パスワードのハッシュやソルトなどは全く考慮していないので、各自、実装すること
-        const user = users.find((user) => user.email === credentials?.email);
-        if (user && user?.password === credentials?.password) {
-          return {
-            email: user.email,
-            id: user.id,
-            name: user.email,
-            role: "admin",
-          };
-        } else {
-          return null;
-        }
-      },
-      credentials: {
-        email: {
-          label: "メールアドレス",
-          placeholder: "メールアドレスを入力して下さい",
-          type: "email",
+    // マジックリンクによるログインの設定
+    EmailProvider({
+      from: process.env.EMAIL_FROM,
+      maxAge: 0.25 * 60 * 60, // 有効期限は15分
+      // NOTE: メールサーバが用意できないときは下記を有効にする。URLがログに出力される
+      // sendVerificationRequest: async (params) => {
+      //   console.log("sendVerificationRequest", params);
+      // },
+      // nodemailerのオブジェクトで指定する。
+      server: {
+        auth: {
+          pass: process.env.EMAIL_SERVER_PASSWORD,
+          user: process.env.EMAIL_SERVER_USERNAME,
         },
-        password: {
-          label: "パスワード",
-          placeholder: "パスワードを入力して下さい",
-          type: "password",
-        },
+        // NOTE: serviceの指定があるときはhostとportを無視する。
+        host: process.env.EMAIL_SERVER_SERVICE
+          ? undefined
+          : process.env.EMAIL_SERVER_HOST,
+        port: process.env.EMAIL_SERVER_SERVICE
+          ? undefined
+          : process.env.EMAIL_SERVER_PORT,
+        requiresAuth: true,
+        service: process.env.EMAIL_SERVER_SERVICE
+          ? process.env.EMAIL_SERVER_SERVICE
+          : undefined,
       },
-      name: "パスワード",
     }),
+    // NOTE: 任意のユーザ認証を実装したいとき
+    // CredentialsProvider({
+    //   async authorize(credentials) {
+    //     // TODO: データベースなどからのユーザ情報取得を書く
+    //     const users = [
+    //       { email: "user1@example.com", id: "1", password: "password1" },
+    //       { email: "user2@example.com", id: "2", password: "password2" },
+    //       { email: "abc@abc", id: "3", password: "123" },
+    //     ];
+    //     // !!! ユーザ認証をする !!!
+    //     // パスワードのハッシュやソルトなどは全く考慮していないので、各自、実装すること
+    //     const user = users.find((user) => user.email === credentials?.email);
+    //     if (user && user?.password === credentials?.password) {
+    //       return {
+    //         email: user.email,
+    //         id: user.id,
+    //         name: user.email,
+    //         role: "admin",
+    //       };
+    //     } else {
+    //       return null;
+    //     }
+    //   },
+    //   credentials: {
+    //     email: {
+    //       label: "メールアドレス",
+    //       placeholder: "メールアドレスを入力して下さい",
+    //       type: "email",
+    //     },
+    //     password: {
+    //       label: "パスワード",
+    //       placeholder: "パスワードを入力して下さい",
+    //       type: "password",
+    //     },
+    //   },
+    //   name: "パスワード",
+    // }),
   ],
   session: { strategy: "jwt" },
 };
