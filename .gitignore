@@ -34,9 +34,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# dgraph
-.dgraph
-
 # cosmos
 cosmos.imports.ts
 
