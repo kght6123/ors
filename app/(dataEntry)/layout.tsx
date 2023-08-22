@@ -1,6 +1,4 @@
-import { ChevronLeftIcon } from "@heroicons/react/20/solid";
 import { Container } from "$/_ui/atoms/container";
-import { Button } from "$/_ui/atoms/button";
 import { WorldMap } from "$/WorldMap";
 import clsx from "clsx";
 

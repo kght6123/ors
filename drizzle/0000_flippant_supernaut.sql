@@ -14,11 +14,28 @@ CREATE TABLE `account` (
 	FOREIGN KEY (`userId`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
+CREATE TABLE `reserveDateTime` (
+	`created_at` integer DEFAULT (strftime('%s', 'now', 'localtime')),
+	`id` text PRIMARY KEY NOT NULL,
+	`reserved_at` integer NOT NULL,
+	`updated_at` integer DEFAULT (strftime('%s', 'now', 'localtime')),
+	`userId` text NOT NULL,
+	FOREIGN KEY (`userId`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE cascade
+);
+--> statement-breakpoint
 CREATE TABLE `session` (
 	`expires` integer NOT NULL,
 	`sessionToken` text PRIMARY KEY NOT NULL,
 	`userId` text NOT NULL,
 	FOREIGN KEY (`userId`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE cascade
+);
+--> statement-breakpoint
+CREATE TABLE `userDetail` (
+	`created_at` integer DEFAULT (strftime('%s', 'now', 'localtime')),
+	`id` text PRIMARY KEY NOT NULL,
+	`realName` text NOT NULL,
+	`tel` integer NOT NULL,
+	`updated_at` integer DEFAULT (strftime('%s', 'now', 'localtime'))
 );
 --> statement-breakpoint
 CREATE TABLE `user` (
@@ -35,3 +52,6 @@ CREATE TABLE `verificationToken` (
 	`token` text NOT NULL,
 	PRIMARY KEY(`identifier`, `token`)
 );
+--> statement-breakpoint
+CREATE UNIQUE INDEX `reserveDateTime_idx_1` ON `reserveDateTime` (`reserved_at`);--> statement-breakpoint
+CREATE UNIQUE INDEX `reserveDateTime_idx_2` ON `reserveDateTime` (`userId`);

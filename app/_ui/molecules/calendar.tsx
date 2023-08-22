@@ -1,4 +1,4 @@
-"use client";
+"use client"; // cosmosのために追加
 import { Select, Option } from "$/_ui/atoms/select";
 import React, { useState } from "react";
 import clsx from "clsx";
@@ -90,6 +90,7 @@ const Base = ({ className, day, month, onChange, year }: Props) => {
             }}
             aria-pressed={value === day}
             data-day={value}
+            type="button"
             key={value}
           >
             {value}
@@ -103,25 +104,30 @@ const Base = ({ className, day, month, onChange, year }: Props) => {
 const Calendar = {
   Base,
   Now: (props: {
-    onChange?: (year: number, month: number, day: number) => void;
+    onChange?: (unixTime: number) => void;
     className?: string;
+    unixTime?: number;
   }) => {
-    const now = new Date();
-    const [year, setYear] = useState(now.getFullYear());
-    const [month, setMonth] = useState(now.getMonth() + 1);
-    const [day, setDay] = useState(now.getDate());
+    const date = new Date(props.unixTime || new Date());
+    // const [year, setYear] = useState(now.getFullYear());
+    // const [month, setMonth] = useState(now.getMonth() + 1);
+    // const [day, setDay] = useState(now.getDate());
     return (
       <Base
         onChange={(year, month, day) => {
-          setYear(year);
-          setMonth(month);
-          setDay(day);
-          props.onChange && props.onChange(year, month, day);
+          // setYear(year);
+          // setMonth(month);
+          // setDay(day);
+          const date = new Date(props.unixTime || new Date());
+          date.setFullYear(year);
+          date.setMonth(month - 1);
+          date.setDate(day);
+          props.onChange && props.onChange(date.getTime());
         }}
         className={props.className}
-        month={month}
-        year={year}
-        day={day}
+        month={date.getMonth() + 1}
+        year={date.getFullYear()}
+        day={date.getDate()}
       />
     );
   },

@@ -1,6 +1,7 @@
-import type { AdapterAccount } from "@auth/core/adapters";
+import type { AdapterAccount } from "next-auth/adapters";
 
 import {
+  uniqueIndex,
   sqliteTable,
   primaryKey,
   integer,
@@ -9,6 +10,7 @@ import {
 import { migrate } from "drizzle-orm/better-sqlite3/migrator";
 import { drizzle } from "drizzle-orm/better-sqlite3";
 import Database from "better-sqlite3";
+import { sql } from "drizzle-orm";
 
 const sqlite = new Database("./sqlite.db");
 export const db = drizzle(sqlite);
@@ -62,5 +64,38 @@ export const verificationTokens = sqliteTable(
     compoundKey: primaryKey(vt.identifier, vt.token),
   })
 );
+
+export const reserveDateTimes = sqliteTable(
+  "reserveDateTime",
+  {
+    created_at: integer("created_at").default(
+      sql`(strftime('%s', 'now', 'localtime'))`
+    ),
+    id: text("id").notNull().primaryKey(),
+    reserved_at: integer("reserved_at", { mode: "timestamp_ms" }).notNull(),
+    updated_at: integer("updated_at").default(
+      sql`(strftime('%s', 'now', 'localtime'))`
+    ),
+    userId: text("userId")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+  },
+  (table) => ({
+    idx1: uniqueIndex("reserveDateTime_idx_1").on(table.reserved_at),
+    idx2: uniqueIndex("reserveDateTime_idx_2").on(table.userId),
+  })
+);
+
+export const userDetails = sqliteTable("userDetail", {
+  created_at: integer("created_at").default(
+    sql`(strftime('%s', 'now', 'localtime'))`
+  ),
+  id: text("id").notNull().primaryKey(),
+  realName: text("realName").notNull(),
+  tel: integer("tel").notNull(),
+  updated_at: integer("updated_at").default(
+    sql`(strftime('%s', 'now', 'localtime'))`
+  ),
+});
 
 migrate(db, { migrationsFolder: "./drizzle" });

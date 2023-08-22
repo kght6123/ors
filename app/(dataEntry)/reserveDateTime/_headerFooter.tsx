@@ -23,9 +23,13 @@ export default function HeaderFooter() {
         )}
       {footerEl &&
         createPortal(
-          <NextLink href="/registUserInfo">
-            <Button.Basic color="primary">予約する</Button.Basic>
-          </NextLink>,
+          <Button.Basic
+            form="reservedDateTimeSelector"
+            color="primary"
+            type="submit"
+          >
+            予約する
+          </Button.Basic>,
           footerEl
         )}
     </>

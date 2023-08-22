@@ -1,17 +1,24 @@
-"use client";
+"use client"; // cosmosのために追加
 import React, { useState } from "react";
 import clsx from "clsx";
 
 // TODO: この辺りの問題があるため、他のatomなどと同様にオブジェクトで複数コンポーネントを返せない https://github.com/vercel/next.js/issues/41940
 
 export interface Props {
-  onChange?: (value?: string) => void;
+  onChange?: (date: Date, value: string) => void;
   reservedTimeList?: string[];
   disabledTimeList?: string[];
   splitMinute?: number;
   className?: string;
   value?: string;
 }
+
+const toHhMm = (date: Date) => {
+  const localeTimeString = date.toLocaleTimeString();
+  return localeTimeString.length > 7
+    ? localeTimeString.substring(0, 5)
+    : localeTimeString.substring(0, 4);
+};
 
 const Base = ({
   className,
@@ -25,18 +32,8 @@ const Base = ({
   return (
     <ul className={clsx("relative flex flex-col", className)}>
       {timelines.map((_value, index) => {
-        const localeTimeString = new Date(
-          1900,
-          1 - 1,
-          1,
-          9,
-          splitMinute * index,
-          0
-        ).toLocaleTimeString();
-        const time =
-          localeTimeString.length > 7
-            ? localeTimeString.substring(0, 5)
-            : localeTimeString.substring(0, 4);
+        const date = new Date(1900, 1 - 1, 1, 9, splitMinute * index, 0);
+        const time = toHhMm(date);
         return (
           <li
             className="flex flex-row content-center items-center px-4 py-2 odd:bg-slate-50/80 even:bg-slate-100/80 dark:odd:bg-slate-900/80 dark:even:bg-slate-950/80"
@@ -63,7 +60,7 @@ const Base = ({
               ) : (
                 <button
                   onClick={() => {
-                    onChange && onChange(time);
+                    onChange && onChange(date, time);
                   }}
                   className="h-12 w-full"
                 >
@@ -86,19 +83,24 @@ const Timeline = {
     onChange,
     reservedTimeList,
     splitMinute = 60,
-  }: Omit<Props, "value">) => {
-    const [value, setValue] = useState<undefined | string>(undefined);
+    unixTime,
+  }: Omit<Props, "onChange" | "value"> & {
+    onChange?: (unixTime: number, value: string) => void;
+    unixTime?: number;
+  }) => {
     return (
       <Base
-        onChange={(value) => {
-          setValue(value);
-          onChange && onChange(value);
+        onChange={(date, value) => {
+          const newDate = new Date(unixTime || new Date());
+          newDate.setHours(date.getHours());
+          newDate.setMinutes(date.getMinutes());
+          onChange && onChange(newDate.getTime(), value);
         }}
-        reservedTimeList={reservedTimeList}
+        value={toHhMm(new Date(unixTime || new Date()))}
         disabledTimeList={disabledTimeList}
+        reservedTimeList={reservedTimeList}
         splitMinute={splitMinute}
         className={className}
-        value={value}
       />
     );
   },

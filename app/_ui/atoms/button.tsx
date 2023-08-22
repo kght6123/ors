@@ -4,14 +4,30 @@ import clsx from "clsx";
 
 export interface Props {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  onSubmit?: React.FormEventHandler<HTMLButtonElement>;
+  type?: undefined | "submit" | "button" | "reset";
   children?: React.ReactNode;
   className?: string;
+  form?: string;
 }
 
 // ロジックは基底のButtonに集約する、コピーして新しくコンポーネントを作る時もUIのバリエーション側でエラーが出づらい
-const Base = ({ children, className, onClick }: Props) => {
+const Base = ({
+  children,
+  className,
+  form,
+  onClick,
+  onSubmit,
+  type = "button",
+}: Props) => {
   return (
-    <button className={clsx(className)} onClick={onClick}>
+    <button
+      className={clsx(className)}
+      onSubmit={onSubmit}
+      onClick={onClick}
+      type={type}
+      form={form}
+    >
       {children}
     </button>
   );
