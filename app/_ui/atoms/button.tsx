@@ -3,9 +3,10 @@ import React from "react";
 import clsx from "clsx";
 
 export interface Props {
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   onSubmit?: React.FormEventHandler<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   type?: undefined | "submit" | "button" | "reset";
+  value?: readonly string[] | number | string;
   children?: React.ReactNode;
   className?: string;
   form?: string;
@@ -19,14 +20,16 @@ const Base = ({
   onClick,
   onSubmit,
   type = "button",
+  value,
 }: Props) => {
   return (
     <button
       className={clsx(className)}
       onSubmit={onSubmit}
       onClick={onClick}
-      type={type}
+      value={value}
       form={form}
+      type={type}
     >
       {children}
     </button>
