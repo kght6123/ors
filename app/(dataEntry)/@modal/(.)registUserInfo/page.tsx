@@ -1,30 +1,16 @@
-"use client";
+import RegistUserInfoDialog from "$/(dataEntry)/@modal/(.)registUserInfo/_registUserInfoDialog";
 import { UserPlusIcon } from "@heroicons/react/20/solid";
-import { useRouter } from "next/navigation";
 import { Button } from "$/_ui/atoms/button";
 import { Circle } from "$/_ui/atoms/circle";
 import { Input } from "$/_ui/atoms/input";
-import Link from "next/link";
 import React from "react";
 
-export default async function RegistUserInfo() {
-  const router = useRouter();
+export default function RegistUserInfo() {
   return (
-    <dialog
-      onClose={(event) => {
-        if (event.currentTarget.returnValue === "complete") {
-          alert("completed!!!");
-          router.back();
-        } else {
-          router.back();
-        }
-      }}
-      className="modal modal-bottom sm:modal-middle"
-      id="my_modal_5"
-      open
-    >
+    <RegistUserInfoDialog>
       <form
         className="modal-box flex flex-col content-center items-center justify-center gap-4"
+        id="registUserInfoForm"
         method="dialog"
       >
         <Circle.Basic className="relative h-28 w-28" color="secondary">
@@ -39,20 +25,30 @@ export default async function RegistUserInfo() {
         <div className="space-y-1 pb-4">
           <div className="space-y-2">
             <label className="text-xs font-bold">氏名</label>
-            <Input.Basic placeholder="名前を入力して下さい" color="secondary" />
+            <Input.Basic
+              placeholder="名前を入力して下さい"
+              color="secondary"
+              name="realName"
+            />
           </div>
           <div className="space-y-2">
             <label className="text-xs font-bold">電話番号</label>
-            <Input.Basic placeholder="090-xxxx-xxxx" color="secondary" />
+            <Input.Basic
+              placeholder="090-xxxx-xxxx"
+              color="secondary"
+              name="tel"
+            />
           </div>
         </div>
-        <Button.Basic value="complete" color="primary">
-          <Link href="/reserveDateTimeComplete">予約する</Link>
-        </Button.Basic>
+        <div className="modal-action w-full">
+          <Button.Basic value="complete" color="primary" type="submit">
+            予約する
+          </Button.Basic>
+        </div>
       </form>
-      <form className="modal-backdrop" method="dialog">
+      <form className="modal-backdrop bg-secondary-950/90" method="dialog">
         <button value="close">&nbsp;</button>
       </form>
-    </dialog>
+    </RegistUserInfoDialog>
   );
 }

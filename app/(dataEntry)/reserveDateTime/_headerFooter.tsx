@@ -24,7 +24,7 @@ export default function HeaderFooter() {
       {footerEl &&
         createPortal(
           <Button.Basic
-            form="reservedDateTimeSelector"
+            form="reservedDateTimeSelectorForm"
             color="primary"
             type="submit"
           >

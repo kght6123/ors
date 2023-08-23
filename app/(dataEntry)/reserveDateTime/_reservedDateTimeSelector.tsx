@@ -17,7 +17,7 @@ export default function ReservedDateTimeSelector() {
         alert(unixTime);
         router.push("/registUserInfo");
       }}
-      id="reservedDateTimeSelector"
+      id="reservedDateTimeSelectorForm"
     >
       <CalendarNow
         onChange={(unixTime) => setUnixTime(unixTime)}

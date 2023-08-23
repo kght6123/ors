@@ -8,15 +8,17 @@ export interface Props {
   children?: React.ReactNode;
   placeholder?: string;
   className?: string;
+  name?: string;
 }
 
-const Base = ({ className, onChange, placeholder, value }: Props) => {
+const Base = ({ className, name, onChange, placeholder, value }: Props) => {
   return (
     <input
       className={clsx(className)}
       placeholder={placeholder}
       onChange={onChange}
       value={value}
+      name={name}
     />
   );
 };
