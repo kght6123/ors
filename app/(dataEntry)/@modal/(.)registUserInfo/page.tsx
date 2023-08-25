@@ -1,6 +1,5 @@
 import RegistUserInfoDialog from "$/(dataEntry)/@modal/(.)registUserInfo/_registUserInfoDialog";
 import { UserPlusIcon } from "@heroicons/react/20/solid";
-import { Button } from "$/_ui/atoms/button";
 import { Circle } from "$/_ui/atoms/circle";
 import { Input } from "$/_ui/atoms/input";
 import React from "react";
@@ -8,11 +7,7 @@ import React from "react";
 export default function RegistUserInfo() {
   return (
     <RegistUserInfoDialog>
-      <form
-        className="modal-box flex flex-col content-center items-center justify-center gap-4"
-        id="registUserInfoForm"
-        method="dialog"
-      >
+      <div className="flex flex-col content-center items-center justify-center gap-4">
         <Circle.Basic className="relative h-28 w-28" color="secondary">
           <UserPlusIcon className="absolute right-3 top-4 h-20 w-20 fill-none stroke-secondary-900 stroke-[.5]" />
         </Circle.Basic>
@@ -40,15 +35,7 @@ export default function RegistUserInfo() {
             />
           </div>
         </div>
-        <div className="modal-action w-full">
-          <Button.Basic value="complete" color="primary" type="submit">
-            予約する
-          </Button.Basic>
-        </div>
-      </form>
-      <form className="modal-backdrop bg-secondary-950/90" method="dialog">
-        <button value="close">&nbsp;</button>
-      </form>
+      </div>
     </RegistUserInfoDialog>
   );
 }

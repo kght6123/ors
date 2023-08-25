@@ -3,7 +3,6 @@ import { ChevronLeftIcon } from "@heroicons/react/20/solid";
 import { useHeaderFooter } from "$/(dataEntry)/_hooks";
 import { Button } from "$/_ui/atoms/button";
 import { createPortal } from "react-dom";
-import NextLink from "next/link";
 import React from "react";
 
 export default function HeaderFooter() {
