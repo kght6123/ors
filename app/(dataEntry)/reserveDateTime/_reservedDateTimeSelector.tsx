@@ -10,11 +10,20 @@ export default function ReservedDateTimeSelector() {
   return (
     <form
       onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
-        // e.stopPropagation();
         e.preventDefault();
         const formData = new FormData(e.target as HTMLFormElement);
         const unixTime = formData.get("unixTime");
-        alert(unixTime);
+        const date = new Date(
+          parseInt(typeof unixTime === "string" ? unixTime : "0")
+        );
+        if (date.getHours() < 9 || date.getHours() > 20) {
+          // 9時から20時までの間で予約可能、それ以外は選択していないとみなす。
+          alert("予約時刻を選択してください。");
+          return;
+        }
+        alert(
+          "氏名や電話番号の登録が表示されない場合は、画面をリロードして予約日時の選択をやり直して下さい。（NEXT-1160）"
+        );
         router.push("/registUserInfo");
       }}
       id="reservedDateTimeSelectorForm"
