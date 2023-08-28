@@ -21,17 +21,24 @@ export default function RegistUserInfo() {
           <div className="space-y-2">
             <label className="text-xs font-bold">氏名</label>
             <Input.Basic
-              placeholder="名前を入力して下さい"
+              placeholder="氏名を入力して下さい"
+              title="氏名を入力して下さい"
               color="secondary"
               name="realName"
+              autoFocus
+              required
             />
           </div>
           <div className="space-y-2">
             <label className="text-xs font-bold">電話番号</label>
             <Input.Basic
-              placeholder="090-xxxx-xxxx"
+              title="電話番号は半角数字または半角ハイフン（‐）で入力して下さい"
+              pattern="\d{2,4}-?\d{2,4}-?\d{3,4}"
+              placeholder="090-1234-5678"
               color="secondary"
               name="tel"
+              type="tel"
+              required
             />
           </div>
         </div>

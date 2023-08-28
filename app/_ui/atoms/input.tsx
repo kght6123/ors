@@ -5,20 +5,41 @@ import clsx from "clsx";
 export interface Props {
   value?: readonly string[] | undefined | number | string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  type?: React.HTMLInputTypeAttribute;
   children?: React.ReactNode;
   placeholder?: string;
+  autoFocus?: boolean;
   className?: string;
+  required?: boolean;
+  pattern?: string;
+  title?: string;
   name?: string;
 }
 
-const Base = ({ className, name, onChange, placeholder, value }: Props) => {
+const Base = ({
+  autoFocus,
+  className,
+  name,
+  onChange,
+  pattern,
+  placeholder,
+  required,
+  title,
+  type,
+  value,
+}: Props) => {
   return (
     <input
       className={clsx(className)}
       placeholder={placeholder}
+      autoFocus={autoFocus}
       onChange={onChange}
+      required={required}
+      pattern={pattern}
+      title={title}
       value={value}
       name={name}
+      type={type}
     />
   );
 };

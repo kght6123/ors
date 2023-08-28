@@ -31,7 +31,6 @@ export default function RegistUserInfoDialog({
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          // alert("completed!!!");
           const reservedDateFormData = new FormData(
             (document.getElementById(
               "reservedDateTimeSelectorForm"
@@ -43,7 +42,6 @@ export default function RegistUserInfoDialog({
           const unixTime = reservedDateFormData.get("unixTime");
           const realName = registUserInfoFormData.get("realName");
           const tel = registUserInfoFormData.get("tel");
-          alert(JSON.stringify({ realName, tel, unixTime }));
           setOpen(false);
           // TODO 登録処理を入れる
           router.push("/reserveDateTimeComplete");
