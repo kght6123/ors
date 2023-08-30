@@ -1,7 +1,7 @@
 import RegistUserInfoDialog from "$/(dataEntry)/@modal/(.)registUserInfo/_registUserInfoDialog";
-import { UserPlusIcon } from "@heroicons/react/20/solid";
 import { Circle } from "$/_ui/atoms/circle";
 import { Input } from "$/_ui/atoms/input";
+import { UserPlusIcon } from "@heroicons/react/20/solid";
 import React from "react";
 
 export default function RegistUserInfo() {
@@ -21,24 +21,24 @@ export default function RegistUserInfo() {
           <div className="space-y-2">
             <label className="text-xs font-bold">氏名</label>
             <Input.Basic
-              placeholder="氏名を入力して下さい"
-              title="氏名を入力して下さい"
+              autoFocus
               color="secondary"
               name="realName"
-              autoFocus
+              placeholder="氏名を入力して下さい"
               required
+              title="氏名を入力して下さい"
             />
           </div>
           <div className="space-y-2">
             <label className="text-xs font-bold">電話番号</label>
             <Input.Basic
-              title="電話番号は半角数字または半角ハイフン（‐）で入力して下さい"
-              pattern="\d{2,4}-?\d{2,4}-?\d{3,4}"
-              placeholder="090-1234-5678"
               color="secondary"
               name="tel"
-              type="tel"
+              pattern="\d{2,4}-?\d{2,4}-?\d{3,4}"
+              placeholder="090-1234-5678"
               required
+              title="電話番号は半角数字または半角ハイフン（‐）で入力して下さい"
+              type="tel"
             />
           </div>
         </div>

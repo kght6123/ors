@@ -1,8 +1,8 @@
 "use client";
-import React, { useEffect, useState, useId } from "react";
-import { usePathname, useRouter } from "next/navigation";
 import { Button } from "$/_ui/atoms/button";
 import clsx from "clsx";
+import { usePathname, useRouter } from "next/navigation";
+import React, { useEffect, useId, useState } from "react";
 
 export default function RegistUserInfoDialog({
   children,
@@ -54,10 +54,10 @@ export default function RegistUserInfoDialog({
         {children}
         <div className="modal-action w-full">
           <Button.Basic
-            value="complete"
             color="primary"
-            type="submit"
             form={id}
+            type="submit"
+            value="complete"
           >
             予約する
           </Button.Basic>

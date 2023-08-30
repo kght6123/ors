@@ -1,5 +1,5 @@
-import { UserPlusIcon } from "@heroicons/react/24/outline";
 import { Circle } from "$/_ui/atoms/circle";
+import { UserPlusIcon } from "@heroicons/react/24/outline";
 import React from "react";
 
 export const Fixture = {

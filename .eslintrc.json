@@ -3,7 +3,8 @@
     "next/core-web-vitals",
     "prettier",
     "plugin:tailwindcss/recommended",
-    "plugin:perfectionist/recommended-line-length"
+    // "plugin:perfectionist/recommended-line-length"
+    "plugin:perfectionist/recommended-natural"
   ],
   "plugins": ["perfectionist"],
   "rules": {

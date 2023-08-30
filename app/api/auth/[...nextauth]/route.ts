@@ -1,7 +1,7 @@
+import { db } from "#/schema";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import EmailProvider from "next-auth/providers/email";
-import { db } from "#/schema";
 
 export const authOptions: NextAuthOptions = {
   adapter: DrizzleAdapter(db),

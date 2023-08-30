@@ -1,6 +1,6 @@
 "use client";
-import { TimelineSelector } from "$/_ui/molecules/timeline";
 import { CalendarNow } from "$/_ui/molecules/calendar";
+import { TimelineSelector } from "$/_ui/molecules/timeline";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
@@ -29,18 +29,18 @@ export default function ReservedDateTimeSelector() {
       id="reservedDateTimeSelectorForm"
     >
       <CalendarNow
+        className="w-full"
         onChange={(unixTime) => setUnixTime(unixTime)}
         unixTime={unixTime}
-        className="w-full"
       />
       <TimelineSelector
+        className="w-full"
+        disabledTimeList={["14:00"]}
         onChange={(unixTime) => setUnixTime(unixTime)}
         reservedTimeList={["10:00"]}
-        disabledTimeList={["14:00"]}
         unixTime={unixTime}
-        className="w-full"
       />
-      <input value={unixTime} name="unixTime" type="hidden" />
+      <input name="unixTime" type="hidden" value={unixTime} />
     </form>
   );
 }

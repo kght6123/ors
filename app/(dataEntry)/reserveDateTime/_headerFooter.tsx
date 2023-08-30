@@ -1,9 +1,9 @@
 "use client";
-import { ChevronLeftIcon } from "@heroicons/react/20/solid";
 import { useHeaderFooter } from "$/(dataEntry)/_hooks";
 import { Button } from "$/_ui/atoms/button";
-import { createPortal } from "react-dom";
+import { ChevronLeftIcon } from "@heroicons/react/20/solid";
 import React from "react";
+import { createPortal } from "react-dom";
 
 export default function HeaderFooter() {
   const [headerEl, footerEl] = useHeaderFooter();
@@ -23,8 +23,8 @@ export default function HeaderFooter() {
       {footerEl &&
         createPortal(
           <Button.Basic
-            form="reservedDateTimeSelectorForm"
             color="primary"
+            form="reservedDateTimeSelectorForm"
             type="submit"
           >
             予約する

@@ -1,5 +1,5 @@
-import { CheckIcon } from "@heroicons/react/20/solid";
 import { Circle } from "$/_ui/atoms/circle";
+import { CheckIcon } from "@heroicons/react/20/solid";
 import React from "react";
 
 import HeaderFooter from "./_headerFooter";

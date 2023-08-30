@@ -1,4 +1,4 @@
-import { Select, Option } from "$/_ui/atoms/select";
+import { Option, Select } from "$/_ui/atoms/select";
 import React from "react";
 
 export const Fixture = {

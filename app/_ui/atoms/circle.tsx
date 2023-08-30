@@ -1,6 +1,6 @@
 import { Color } from "$/_ui";
-import React from "react";
 import clsx from "clsx";
+import React from "react";
 
 export interface Props {
   children?: React.ReactNode;

@@ -1,6 +1,6 @@
-import { Rounded, Color, Tone } from "$/_ui";
-import React from "react";
+import { Color, Rounded, Tone } from "$/_ui";
 import clsx from "clsx";
+import React from "react";
 
 export interface Props {
   children?: React.ReactNode;
@@ -15,8 +15,8 @@ const Square = {
   Base,
   Basic: (
     props: Props & {
-      rounded?: Rounded;
       color?: Color;
+      rounded?: Rounded;
       tone?: Tone;
     }
   ) => {

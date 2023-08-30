@@ -1,36 +1,36 @@
 export type Rounded = "full" | "none" | "xl";
 export type Color =
-  | "secondary"
-  | "primary"
-  | "success"
-  | "warning"
   | "accent"
   | "danger"
   | "error"
+  | "info"
   | "none"
-  | "info";
+  | "primary"
+  | "secondary"
+  | "success"
+  | "warning";
 export type Tone =
-  | "950"
-  | "900"
-  | "800"
-  | "700"
-  | "600"
-  | "500"
-  | "400"
-  | "300"
-  | "200"
+  | "50"
   | "100"
-  | "50";
-export type Font = "normal" | "bold";
-export type Spacing = "none" | "lg" | "md" | "sm" | "xs";
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "600"
+  | "700"
+  | "800"
+  | "900"
+  | "950";
+export type Font = "bold" | "normal";
+export type Spacing = "lg" | "md" | "none" | "sm" | "xs";
 export type Size =
-  | "none"
-  | "5xl"
-  | "4xl"
-  | "3xl"
   | "2xl"
-  | "xl"
+  | "3xl"
+  | "4xl"
+  | "5xl"
   | "lg"
   | "md"
+  | "none"
   | "sm"
+  | "xl"
   | "xs";

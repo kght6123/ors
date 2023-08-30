@@ -1,22 +1,22 @@
-import { ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { Size } from "$/_ui";
-import React from "react";
+import { ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import clsx from "clsx";
+import React from "react";
 
 export interface Props {
-  value?: readonly string[] | undefined | number | string;
-  onChange?: React.ChangeEventHandler<HTMLSelectElement>;
   children?: React.ReactNode;
-  placeholder?: string;
   className?: string;
+  onChange?: React.ChangeEventHandler<HTMLSelectElement>;
+  placeholder?: string;
+  value?: number | readonly string[] | string | undefined;
 }
 
 const Base = ({ children, className, onChange, placeholder, value }: Props) => {
   return (
     <select
       className={clsx(className)}
-      placeholder={placeholder}
       onChange={onChange}
+      placeholder={placeholder}
       value={value}
     >
       {children}
@@ -28,8 +28,8 @@ const Option = ({
   children,
   value,
 }: {
-  value?: readonly string[] | undefined | number | string;
   children?: React.ReactNode;
+  value?: number | readonly string[] | string | undefined;
 }) => {
   return <option value={value}>{children}</option>;
 };
@@ -58,4 +58,4 @@ const Select = {
   },
 };
 
-export { Select, Option };
+export { Option, Select };

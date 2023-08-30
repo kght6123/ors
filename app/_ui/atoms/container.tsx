@@ -1,6 +1,6 @@
-import { Rounded, Color, Size } from "$/_ui";
-import React from "react";
+import { Color, Rounded, Size } from "$/_ui";
 import clsx from "clsx";
+import React from "react";
 
 export interface Props {
   children?: React.ReactNode;
@@ -42,8 +42,8 @@ const Container = {
   },
   Floating: (
     props: Props & {
-      position?: "bottom" | "top";
       color?: Color;
+      position?: "bottom" | "top";
     }
   ) => {
     const { color = "secondary", position } = props;

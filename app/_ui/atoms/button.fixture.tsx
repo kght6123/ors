@@ -1,5 +1,5 @@
-import { ChevronLeftIcon } from "@heroicons/react/20/solid";
 import { Button } from "$/_ui/atoms/button";
+import { ChevronLeftIcon } from "@heroicons/react/20/solid";
 import React from "react";
 
 export const Fixture = {

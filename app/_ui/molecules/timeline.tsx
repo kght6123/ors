@@ -1,15 +1,15 @@
 "use client"; // cosmosのために追加
-import React, { useState } from "react";
 import clsx from "clsx";
+import React, { useState } from "react";
 
 // TODO: この辺りの問題があるため、他のatomなどと同様にオブジェクトで複数コンポーネントを返せない https://github.com/vercel/next.js/issues/41940
 
 export interface Props {
+  className?: string;
+  disabledTimeList?: string[];
   onChange?: (date: Date, value: string) => void;
   reservedTimeList?: string[];
-  disabledTimeList?: string[];
   splitMinute?: number;
-  className?: string;
   value?: string;
 }
 
@@ -96,11 +96,11 @@ const Timeline = {
           newDate.setMinutes(date.getMinutes());
           onChange && onChange(newDate.getTime(), value);
         }}
-        value={toHhMm(new Date(unixTime || new Date()))}
+        className={className}
         disabledTimeList={disabledTimeList}
         reservedTimeList={reservedTimeList}
         splitMinute={splitMinute}
-        className={className}
+        value={toHhMm(new Date(unixTime || new Date()))}
       />
     );
   },

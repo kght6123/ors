@@ -1,15 +1,15 @@
-import { Rounded, Color, Size } from "$/_ui";
-import React from "react";
+import { Color, Rounded, Size } from "$/_ui";
 import clsx from "clsx";
+import React from "react";
 
 export interface Props {
-  onSubmit?: React.FormEventHandler<HTMLButtonElement>;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  type?: undefined | "submit" | "button" | "reset";
-  value?: readonly string[] | number | string;
   children?: React.ReactNode;
   className?: string;
   form?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  onSubmit?: React.FormEventHandler<HTMLButtonElement>;
+  type?: "button" | "reset" | "submit" | undefined;
+  value?: number | readonly string[] | string;
 }
 
 // ロジックは基底のButtonに集約する、コピーして新しくコンポーネントを作る時もUIのバリエーション側でエラーが出づらい
@@ -25,11 +25,11 @@ const Base = ({
   return (
     <button
       className={clsx(className)}
-      onSubmit={onSubmit}
-      onClick={onClick}
-      value={value}
       form={form}
+      onClick={onClick}
+      onSubmit={onSubmit}
       type={type}
+      value={value}
     >
       {children}
     </button>
@@ -52,9 +52,9 @@ const Button = {
   Base,
   Basic: (
     props: Props & {
+      color?: Color;
       // 対応しているオプションのみ追加する
       rounded?: Rounded;
-      color?: Color;
       size?: Size;
     }
   ) => {

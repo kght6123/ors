@@ -13,8 +13,8 @@ export default function GlobalError({
   error,
   reset,
 }: {
-  reset: () => void;
   error: Error;
+  reset: () => void;
 }) {
   const inputEl = useRef<HTMLDialogElement>(null);
   useEffect(() => {
@@ -32,7 +32,7 @@ export default function GlobalError({
             <p className="py-4">{error.message}</p>
             <div className="modal-action">
               {/* if there is a button in form, it will close the modal */}
-              <button onClick={() => reset()} className="btn">
+              <button className="btn" onClick={() => reset()}>
                 Try Again
               </button>
             </div>

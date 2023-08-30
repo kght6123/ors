@@ -1,20 +1,20 @@
+import { Color, Rounded, Size } from "$/_ui";
+import clsx from "clsx";
 import { Url } from "next/dist/shared/lib/router/router";
-import { Rounded, Color, Size } from "$/_ui";
 import NextLink from "next/link";
 import React from "react";
-import clsx from "clsx";
 
 export interface Props {
   children?: React.ReactNode;
   className?: string;
-  shallow?: boolean;
   href: Url;
+  shallow?: boolean;
 }
 
 // ロジックは基底のBaseに集約する
 const Base = ({ children, className, href, shallow }: Props) => {
   return (
-    <NextLink className={clsx(className)} shallow={shallow} href={href}>
+    <NextLink className={clsx(className)} href={href} shallow={shallow}>
       {children}
     </NextLink>
   );
@@ -35,8 +35,8 @@ const Link = {
   Base,
   Basic: (
     props: Props & {
-      rounded?: Rounded;
       color?: Color;
+      rounded?: Rounded;
       size?: Size;
     }
   ) => {

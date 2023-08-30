@@ -1,19 +1,19 @@
-import { Rounded, Color, Size } from "$/_ui";
-import React from "react";
+import { Color, Rounded, Size } from "$/_ui";
 import clsx from "clsx";
+import React from "react";
 
 export interface Props {
-  value?: readonly string[] | undefined | number | string;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
-  type?: React.HTMLInputTypeAttribute;
-  children?: React.ReactNode;
-  placeholder?: string;
   autoFocus?: boolean;
+  children?: React.ReactNode;
   className?: string;
-  required?: boolean;
-  pattern?: string;
-  title?: string;
   name?: string;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  pattern?: string;
+  placeholder?: string;
+  required?: boolean;
+  title?: string;
+  type?: React.HTMLInputTypeAttribute;
+  value?: number | readonly string[] | string | undefined;
 }
 
 const Base = ({
@@ -30,16 +30,16 @@ const Base = ({
 }: Props) => {
   return (
     <input
-      className={clsx(className)}
-      placeholder={placeholder}
       autoFocus={autoFocus}
-      onChange={onChange}
-      required={required}
-      pattern={pattern}
-      title={title}
-      value={value}
+      className={clsx(className)}
       name={name}
+      onChange={onChange}
+      pattern={pattern}
+      placeholder={placeholder}
+      required={required}
+      title={title}
       type={type}
+      value={value}
     />
   );
 };
@@ -48,8 +48,8 @@ const Input = {
   Base,
   Basic: (
     props: Props & {
-      rounded?: Rounded;
       color?: Color;
+      rounded?: Rounded;
       size?: Size;
     }
   ) => {

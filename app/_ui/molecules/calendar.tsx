@@ -1,16 +1,16 @@
 "use client"; // cosmosのために追加
-import { Select, Option } from "$/_ui/atoms/select";
-import React, { useState } from "react";
+import { Option, Select } from "$/_ui/atoms/select";
 import clsx from "clsx";
+import React, { useState } from "react";
 
 // TODO: この辺りの問題があるため、他のatomなどと同様にオブジェクトで複数コンポーネントを返せない https://github.com/vercel/next.js/issues/41940
 
 export interface Props {
-  onChange?: (year: number, month: number, day: number) => void;
   className?: string;
-  month: number;
-  year: number;
   day: number;
+  month: number;
+  onChange?: (year: number, month: number, day: number) => void;
+  year: number;
 }
 
 const getDayNumber = (year: number, month: number, day: number) => {
@@ -39,11 +39,11 @@ const Base = ({ className, day, month, onChange, year }: Props) => {
             setFirstDay(getDayNumber(Number(e.target.value), month, 1));
             setDaysArray(getDaysArray(Number(e.target.value), month));
           }}
-          value={year}
           size="sm"
+          value={year}
         >
           {Array.from({ length: 10 }, (_, i) => year + i).map((value) => (
-            <Option value={value} key={value}>
+            <Option key={value} value={value}>
               {value}年
             </Option>
           ))}
@@ -56,11 +56,11 @@ const Base = ({ className, day, month, onChange, year }: Props) => {
             setFirstDay(getDayNumber(year, Number(e.target.value), 1));
             setDaysArray(getDaysArray(year, Number(e.target.value)));
           }}
-          value={month}
           size="xl"
+          value={month}
         >
           {Array.from({ length: 12 }, (_, i) => i + 1).map((value) => (
-            <Option value={value} key={value}>
+            <Option key={value} value={value}>
               {value}月
             </Option>
           ))}
@@ -90,8 +90,8 @@ const Base = ({ className, day, month, onChange, year }: Props) => {
             }}
             aria-pressed={value === day}
             data-day={value}
-            type="button"
             key={value}
+            type="button"
           >
             {value}
           </button>
@@ -104,8 +104,8 @@ const Base = ({ className, day, month, onChange, year }: Props) => {
 const Calendar = {
   Base,
   Now: (props: {
-    onChange?: (unixTime: number) => void;
     className?: string;
+    onChange?: (unixTime: number) => void;
     unixTime?: number;
   }) => {
     const date = new Date(props.unixTime || new Date());
@@ -125,9 +125,9 @@ const Calendar = {
           props.onChange && props.onChange(date.getTime());
         }}
         className={props.className}
+        day={date.getDate()}
         month={date.getMonth() + 1}
         year={date.getFullYear()}
-        day={date.getDate()}
       />
     );
   },
