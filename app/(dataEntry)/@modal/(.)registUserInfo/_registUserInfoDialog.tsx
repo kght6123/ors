@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState, useId } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { Button } from "$/_ui/atoms/button";
-import { useRouter, usePathname } from "next/navigation";
 import clsx from "clsx";
 
 export default function RegistUserInfoDialog({
