@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState, useId } from "react";
 import { Button } from "$/_ui/atoms/button";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import clsx from "clsx";
 
 export default function RegistUserInfoDialog({
@@ -21,12 +21,14 @@ export default function RegistUserInfoDialog({
     };
   }, []);
   const router = useRouter();
+  const pathName = usePathname();
   return (
     <div
       className={clsx(
         "modal modal-bottom sm:modal-middle",
         open && "modal-open"
       )}
+      key={pathName}
     >
       <form
         onSubmit={(e) => {
