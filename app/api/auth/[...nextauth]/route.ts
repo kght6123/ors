@@ -41,9 +41,9 @@ export const authOptions: NextAuthOptions = {
       from: process.env.EMAIL_FROM,
       maxAge: 0.25 * 60 * 60, // 有効期限は15分
       // NOTE: メールサーバが用意できないときは下記を有効にする。URLがログに出力される
-      sendVerificationRequest: async (params) => {
-        console.log("sendVerificationRequest", params);
-      },
+      // sendVerificationRequest: async (params) => {
+      //   console.log("sendVerificationRequest", params);
+      // },
       // nodemailerのオブジェクトで指定する。
       server: {
         auth: {
