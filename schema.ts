@@ -1,16 +1,16 @@
 import type { AdapterAccount } from "next-auth/adapters";
 
-import {
-  uniqueIndex,
-  sqliteTable,
-  primaryKey,
-  integer,
-  text,
-} from "drizzle-orm/sqlite-core";
-import { migrate } from "drizzle-orm/better-sqlite3/migrator";
-import { drizzle } from "drizzle-orm/better-sqlite3";
 import Database from "better-sqlite3";
 import { sql } from "drizzle-orm";
+import { drizzle } from "drizzle-orm/better-sqlite3";
+import { migrate } from "drizzle-orm/better-sqlite3/migrator";
+import {
+  integer,
+  primaryKey,
+  sqliteTable,
+  text,
+  uniqueIndex,
+} from "drizzle-orm/sqlite-core";
 
 const sqlite = new Database("./sqlite.db");
 export const db = drizzle(sqlite);

@@ -32,8 +32,8 @@ export default function RootLayout({
           id="footer"
           position="bottom"
         ></Container.Floating>
+        {modal}
       </div>
-      {modal}
     </>
   );
 }

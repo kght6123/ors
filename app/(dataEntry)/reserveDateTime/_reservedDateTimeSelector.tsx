@@ -24,7 +24,9 @@ export default function ReservedDateTimeSelector() {
         alert(
           "氏名や電話番号の登録が表示されない場合は、画面をリロードして予約日時の選択をやり直して下さい。（NEXT-1160）"
         );
-        router.push("/registUserInfo?nowTime=" + new Date().getTime());
+        router.push(
+          "/reserveDateTime/registUserInfo?nowTime=" + new Date().getTime()
+        );
       }}
       id="reservedDateTimeSelectorForm"
     >
