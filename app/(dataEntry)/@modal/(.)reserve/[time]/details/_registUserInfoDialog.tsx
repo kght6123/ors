@@ -47,7 +47,7 @@ export default function RegistUserInfoDialog({
           setOpen(false);
           // TODO 登録処理を入れる
           // MEMO Intercepting Routesによるmodal、別フォームの予約情報とユーザ情報を一度に登録が必要を考慮すると、Server Actionではなくapiでの登録処理を入れる必要がある。（ https://nextjs.org/docs/app/building-your-application/data-fetching/forms-and-mutations ）
-          router.push("/reserveDateTimeComplete");
+          router.push("/reserve/completed");
         }}
         className="modal-box"
         id={id}

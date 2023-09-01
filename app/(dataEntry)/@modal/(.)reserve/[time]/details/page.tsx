@@ -1,4 +1,4 @@
-import RegistUserInfoDialog from "$/(dataEntry)/@modal/(.)reserveDateTime/registUserInfo/_registUserInfoDialog";
+import RegistUserInfoDialog from "$/(dataEntry)/@modal/(.)reserve/[time]/details/_registUserInfoDialog";
 import { Circle } from "$/_ui/atoms/circle";
 import { Input } from "$/_ui/atoms/input";
 import { UserPlusIcon } from "@heroicons/react/20/solid";

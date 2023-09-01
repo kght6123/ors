@@ -20,7 +20,7 @@ export default function HeaderFooter() {
         )}
       {footerEl &&
         createPortal(
-          <NextLink href="/reserveDateTime">
+          <NextLink href="/reserve">
             <Button.Basic color="secondary">予約日時を変更する</Button.Basic>
           </NextLink>,
           footerEl
