@@ -5,8 +5,10 @@ import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useId, useState } from "react";
 
 export default function RegistUserInfoDialog({
+  action,
   children,
 }: {
+  action?: ((formData: FormData) => void) | string;
   children: React.ReactNode;
 }) {
   const [open, setOpen] = useState(true);
@@ -31,24 +33,25 @@ export default function RegistUserInfoDialog({
       key={pathName}
     >
       <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          const reservedDateFormData = new FormData(
-            (document.getElementById(
-              "reservedDateTimeSelectorForm"
-            ) as HTMLFormElement) || undefined
-          );
-          const registUserInfoFormData = new FormData(
-            (e.target as HTMLFormElement) || undefined
-          );
-          const unixTime = reservedDateFormData.get("unixTime");
-          const realName = registUserInfoFormData.get("realName");
-          const tel = registUserInfoFormData.get("tel");
-          setOpen(false);
-          // TODO 登録処理を入れる
-          // MEMO Intercepting Routesによるmodal、別フォームの予約情報とユーザ情報を一度に登録が必要を考慮すると、Server Actionではなくapiでの登録処理を入れる必要がある。（ https://nextjs.org/docs/app/building-your-application/data-fetching/forms-and-mutations ）
-          router.push("/reserve/completed");
-        }}
+        // onSubmit={(e) => {
+        //   e.preventDefault();
+        //   const reservedDateFormData = new FormData(
+        //     (document.getElementById(
+        //       "reservedDateTimeSelectorForm"
+        //     ) as HTMLFormElement) || undefined
+        //   );
+        //   const registUserInfoFormData = new FormData(
+        //     (e.target as HTMLFormElement) || undefined
+        //   );
+        //   const unixTime = reservedDateFormData.get("unixTime");
+        //   const realName = registUserInfoFormData.get("realName");
+        //   const tel = registUserInfoFormData.get("tel");
+        //   setOpen(false);
+        //   // TODO 登録処理を入れる
+        //   // MEMO Intercepting Routesによるmodal、別フォームの予約情報とユーザ情報を一度に登録が必要を考慮すると、Server Actionではなくapiでの登録処理を入れる必要がある。（ https://nextjs.org/docs/app/building-your-application/data-fetching/forms-and-mutations ）
+        //   router.push("/reserve/completed");
+        // }}
+        action={action}
         className="modal-box"
         id={id}
       >
