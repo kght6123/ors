@@ -16,7 +16,7 @@ export default function RegistUserInfoDialog({
   const [open, setOpen] = useState(true);
   const id = useId();
   useEffect(() => {
-    // FIXME おそらく、このIssueの不具合で、useEffectが2回目は呼ばれない https://github.com/vercel/next.js/issues/49662
+    // FIXME おそらく、このIssueの不具合で、useEffectが2回目は呼ばれない https://github.com/vercel/next.js/issues/49662 -> 一旦、[time]をパスパラメータに追加することで回避
     console.log("+ useEffect");
     setOpen(true);
     return () => {
@@ -73,11 +73,11 @@ export default function RegistUserInfoDialog({
           console.log("responseData", data);
           // 判定
           // TODO 判定処理を入れる
-          // MEMO Intercepting Routesによるmodal、別フォームの予約情報とユーザ情報を一度に登録が必要を考慮すると、Server Actionではなくapiでの登録処理を入れる必要がある。（ https://nextjs.org/docs/app/building-your-application/data-fetching/forms-and-mutations ）
           // 画面移動
           router.push("/reserve/completed");
         }}
-        action={action}
+        // FIXME: https://github.com/vercel/next.js/issues/54676 の不具合でServer Actionでredirectが使えないので、onSubmitでAPIを叩くようにする
+        // action={action}
         className="modal-box"
         id={id}
       >

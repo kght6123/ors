@@ -71,7 +71,7 @@ export const reserveDateTimes = sqliteTable(
     created_at: integer("created_at").default(
       sql`(strftime('%s', 'now', 'localtime'))`
     ),
-    id: text("id").notNull().primaryKey(),
+    id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
     reserved_at: integer("reserved_at", { mode: "timestamp_ms" }).notNull(),
     updated_at: integer("updated_at").default(
       sql`(strftime('%s', 'now', 'localtime'))`
@@ -82,17 +82,17 @@ export const reserveDateTimes = sqliteTable(
   },
   (table) => ({
     idx1: uniqueIndex("reserveDateTime_idx_1").on(table.reserved_at),
-    idx2: uniqueIndex("reserveDateTime_idx_2").on(table.userId),
+    // idx2: uniqueIndex("reserveDateTime_idx_2").on(table.userId),
   })
 );
 
-export const userDetails = sqliteTable("userDetail", {
+export const reserveUserDetails = sqliteTable("reserveUserDetails", {
   created_at: integer("created_at").default(
     sql`(strftime('%s', 'now', 'localtime'))`
   ),
   id: text("id").notNull().primaryKey(),
   realName: text("realName").notNull(),
-  tel: integer("tel").notNull(),
+  tel: text("tel").notNull(),
   updated_at: integer("updated_at").default(
     sql`(strftime('%s', 'now', 'localtime'))`
   ),
