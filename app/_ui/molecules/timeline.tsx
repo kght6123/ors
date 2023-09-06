@@ -63,6 +63,7 @@ const Base = ({
                     onChange && onChange(date, time);
                   }}
                   className="h-12 w-full"
+                  type="button"
                 >
                   &nbsp;
                 </button>
@@ -94,6 +95,8 @@ const Timeline = {
           const newDate = new Date(unixTime || new Date());
           newDate.setHours(date.getHours());
           newDate.setMinutes(date.getMinutes());
+          newDate.setMilliseconds(0);
+          newDate.setSeconds(0);
           onChange && onChange(newDate.getTime(), value);
         }}
         className={className}

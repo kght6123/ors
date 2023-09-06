@@ -4,13 +4,20 @@ import { TimelineSelector } from "$/_ui/molecules/timeline";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-export default function ReservedDateTimeSelector() {
-  const [unixTime, setUnixTime] = useState(Date.now());
+export default function ReservedDateTimeSelector({
+  reservedTimeList,
+  unixTime,
+}: {
+  reservedTimeList?: string[];
+  unixTime: number;
+}) {
+  // const [unixTime, setUnixTime] = useState(Date.now());
   const router = useRouter();
   return (
     <form
       onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        // TODO: zod-form-dataに書き換える予定
         const formData = new FormData(e.target as HTMLFormElement);
         const unixTime = formData.get("unixTime");
         const date = new Date(
@@ -29,15 +36,21 @@ export default function ReservedDateTimeSelector() {
       id="reservedDateTimeSelectorForm"
     >
       <CalendarNow
+        onChange={(unixTime) => {
+          // setUnixTime(unixTime);
+          router.push(`/reserve?unixTime=${unixTime}`);
+        }}
         className="w-full"
-        onChange={(unixTime) => setUnixTime(unixTime)}
         unixTime={unixTime}
       />
       <TimelineSelector
+        onChange={(unixTime) => {
+          // setUnixTime(unixTime)
+          router.push(`/reserve?unixTime=${unixTime}`);
+        }}
         className="w-full"
         disabledTimeList={["14:00"]}
-        onChange={(unixTime) => setUnixTime(unixTime)}
-        reservedTimeList={["10:00"]}
+        reservedTimeList={reservedTimeList}
         unixTime={unixTime}
       />
       <input name="unixTime" type="hidden" value={unixTime} />
