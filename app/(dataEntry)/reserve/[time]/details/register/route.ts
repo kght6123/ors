@@ -1,6 +1,7 @@
 import { db, reserveDateTimes, reserveUserDetails } from "#/schema";
 import { ReserveDetail } from "$/(dataEntry)/reserve/_schema";
 import { authOptions } from "$/api/auth/[...nextauth]/route";
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
 
@@ -52,6 +53,8 @@ export async function POST(
         { status: 500 }
       );
     });
+  // キャッシュを更新 TODO: このバグが原因で動かない https://github.com/vercel/next.js/issues/54173
+  revalidatePath("/reserve");
   return NextResponse.json({
     name: realName,
     tel,
