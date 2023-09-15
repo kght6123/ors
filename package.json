@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^0.3.1",
-    "@headlessui/react": "^1.7.14",
     "@heroicons/react": "^2.0.18",
     "@tailwindcss/container-queries": "^0.1.1",
     "@types/node": "20.2.5",
@@ -47,7 +46,6 @@
     "@types/ms": "^0.7.31",
     "@types/protobufjs": "^6.0.0",
     "@types/validator": "^13.11.1",
-    "daisyui": "^3.6.1",
     "drizzle-kit": "^0.19.12",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-perfectionist": "^1.5.0",
@@ -55,5 +53,8 @@
     "prettier": "^2.8.8",
     "react-cosmos": "^6.0.0-beta.5",
     "react-cosmos-next": "^6.0.0-beta.5"
+  },
+  "volta": {
+    "node": "16.20.2"
   }
 }
