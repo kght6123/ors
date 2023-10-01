@@ -28,6 +28,7 @@ export default async function Home() {
       <div className="text-xs">
         {user ? "ログイン中" : "利用するにはログインまたは新規登録をして下さい"}
       </div>
+      {/* NOTE: ログインセッション確認用、通常は表示しない */}
       <div className="hidden break-all text-xs">{`${JSON.stringify(
         session
       )}`}</div>
