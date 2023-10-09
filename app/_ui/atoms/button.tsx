@@ -22,12 +22,14 @@ const Base = ({
   type = "button",
   value,
 }: Props) => {
+  // const { startProgress } = useProgress();
   return (
     <button
       className={clsx(className)}
       form={form}
       onClick={onClick}
       onSubmit={onSubmit}
+      // onSubmit={(e) => { startProgress(); onSubmit && onSubmit(e); e.preventDefault(); }}
       type={type}
       value={value}
     >

@@ -10,6 +10,7 @@ export default withAuth(
       authorized: (nextauth) => {
         console.log("authorized", nextauth, nextauth.req.url);
         if (
+          nextauth.req.url.startsWith("http://localhost:3000/cosmos") ||
           nextauth.req.url.endsWith("/login") ||
           nextauth.req.url.endsWith("/")
         )
