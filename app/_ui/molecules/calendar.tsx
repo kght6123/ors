@@ -131,6 +131,48 @@ const Calendar = {
       />
     );
   },
+  ThreeMonth: (props: {
+    className?: string;
+    onChange?: (unixTime: number) => void;
+    unixTime?: number;
+  }) => {
+    const date = new Date(props.unixTime || new Date());
+    const onChange = (year: number, month: number, day: number) => {
+      const date = new Date(props.unixTime || new Date());
+      date.setFullYear(year);
+      date.setMonth(month - 1);
+      date.setDate(day);
+      props.onChange && props.onChange(date.getTime());
+    };
+    return (
+      <div
+        className={clsx(
+          "grid grid-rows-3 gap-4 sm:grid-cols-3",
+          props.className
+        )}
+      >
+        <Base
+          day={-1}
+          month={date.getMonth()}
+          onChange={onChange}
+          year={date.getFullYear()}
+        />
+        <Base
+          day={date.getDate()}
+          month={date.getMonth() + 1}
+          onChange={onChange}
+          year={date.getFullYear()}
+        />
+        <Base
+          day={-1}
+          month={date.getMonth() + 2}
+          onChange={onChange}
+          year={date.getFullYear()}
+        />
+      </div>
+    );
+  },
 };
 
 export const CalendarNow = Calendar.Now;
+export const CalendarThreeMonth = Calendar.ThreeMonth;
