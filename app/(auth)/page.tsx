@@ -1,8 +1,9 @@
-import { LoginButton, LogoutButton } from "$/_clientside";
 import { Link } from "$/_ui/atoms/link";
 import { authOptions } from "$/api/auth/[...nextauth]/route";
 import { CalendarDaysIcon } from "@heroicons/react/24/outline";
 import { getServerSession } from "next-auth/next";
+
+import { LoginButton, LogoutButton } from "./_clientside";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
