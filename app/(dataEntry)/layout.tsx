@@ -23,7 +23,7 @@ export default function RootLayout({
           position="top"
         ></Container.Floating>
         <WorldMap className="fixed -right-32 -top-20 h-[115svh] fill-slate-100/90 stroke-slate-950/5" />
-        <main className="container relative z-10 gap-4 bg-slate-950/80 p-4 backdrop-blur before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 md:max-h-fit md:max-w-sm md:rounded">
+        <main className="container relative z-10 gap-4 bg-white p-4 shadow-xl before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] dark:bg-slate-950 before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 md:max-h-fit md:max-w-sm  md:rounded">
           {children}
         </main>
         <Container.Floating

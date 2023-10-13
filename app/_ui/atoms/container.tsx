@@ -57,7 +57,7 @@ const Container = {
           color === "primary" &&
             "bg-primary-50 text-primary-950 hover:bg-primary-100",
           color === "secondary" &&
-            "bg-secondary-50 text-secondary-950 backdrop-blur hover:bg-secondary-100 dark:bg-slate-950/80 dark:text-slate-50/80 dark:hover:bg-slate-950/90 dark:hover:text-slate-50/90",
+            "bg-secondary-50 text-secondary-950 hover:bg-secondary-100 dark:bg-slate-950 dark:text-slate-50 dark:hover:bg-slate-950 dark:hover:text-slate-50",
           props.className
         )}
       />
