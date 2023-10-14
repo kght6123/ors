@@ -1,8 +1,9 @@
 "use client";
+import { ReserveData } from "$/(dataEntry)/reserve/_schema";
 import { CalendarNow } from "$/_ui/molecules/calendar";
 import { TimelineSelector } from "$/_ui/molecules/timeline";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React from "react";
 
 export default function ReservedDateTimeSelector({
   reservedTimeList,
@@ -17,12 +18,17 @@ export default function ReservedDateTimeSelector({
     <form
       onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // TODO: zod-form-dataに書き換える予定
+        // 準備
         const formData = new FormData(e.target as HTMLFormElement);
-        const unixTime = formData.get("unixTime");
-        const date = new Date(
-          parseInt(typeof unixTime === "string" ? unixTime : "0")
-        );
+        // バリデーション
+        const result = ReserveData.safeParse(formData);
+        if (result.success === false) {
+          alert(`予約日時を選択してください。`);
+          return;
+        }
+        // 取得
+        const { unixTime } = result.data;
+        const date = new Date(unixTime);
         if (date.getHours() < 9 || date.getHours() > 20) {
           // 9時から20時までの間で予約可能、それ以外は選択していないとみなす。
           alert("予約時刻を選択してください。");
@@ -49,7 +55,7 @@ export default function ReservedDateTimeSelector({
           router.push(`/reserve?unixTime=${unixTime}`);
         }}
         className="w-full"
-        disabledTimeList={["14:00"]}
+        disabledTimeList={["12:00"]}
         reservedTimeList={reservedTimeList}
         unixTime={unixTime}
       />

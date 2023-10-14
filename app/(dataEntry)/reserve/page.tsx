@@ -64,7 +64,7 @@ export default async function ReservedDateTime({
   });
   // 加工
   const reservedTimeList = reserveDateTimeList?.map((reserveDateTime) => {
-    // 0:00へ変換する
+    // 0:00の形式へ変換する
     return `${reserveDateTime.reserved_at.getHours()}:${(
       "0" + reserveDateTime.reserved_at.getMinutes()
     ).slice(-2)}`;

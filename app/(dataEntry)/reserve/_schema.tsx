@@ -13,3 +13,7 @@ export const ReserveDetail = zfd.formData({
   tel: zfd.text(z.string().refine(validator.isMobilePhone)),
   time: zfd.numeric(z.number().nonnegative()),
 });
+
+export const ReserveData = zfd.formData({
+  unixTime: zfd.numeric(z.number().nonnegative()),
+});
