@@ -16,12 +16,12 @@ export async function POST(
   // バリデーション
   if (!userId) {
     return NextResponse.json(
-      { error: "ログイン情報が存在しません。" },
+      { message: "ログイン情報が存在しません。" },
       { status: 401 }
     );
   }
   // 登録
-  await db
+  const result = await db
     .transaction(async (tx) => {
       const r1 = db
         .insert(reserveDateTimes)
@@ -31,6 +31,10 @@ export async function POST(
         })
         .run();
       console.log(r1);
+      if (r1.changes !== 1) {
+        tx.rollback();
+        return { message: "予約に失敗しました。" };
+      }
       const r2 = db
         .insert(reserveUserDetails)
         .values({
@@ -45,19 +49,24 @@ export async function POST(
         })
         .run();
       console.log(r2);
+      if (r2.changes !== 1) {
+        tx.rollback();
+        return { message: "予約に失敗しました。" };
+      }
     })
     .catch((e) => {
       console.error(e);
-      return NextResponse.json(
-        { error: "予約に失敗しました。" },
-        { status: 500 }
-      );
+      return { message: "予約に失敗しました。" };
     });
-  // キャッシュを更新 TODO: このバグが原因で動かない https://github.com/vercel/next.js/issues/54173
-  revalidatePath("/reserve");
-  return NextResponse.json({
-    name: realName,
-    tel,
-    time,
-  });
+  if (result?.message) {
+    return NextResponse.json(result, { status: 500 });
+  } else {
+    // キャッシュを更新 TODO: このバグが原因で動かない https://github.com/vercel/next.js/issues/54173
+    revalidatePath("/reserve");
+    return NextResponse.json({
+      name: realName,
+      tel,
+      time,
+    });
+  }
 }

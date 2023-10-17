@@ -1,11 +1,15 @@
 "use client";
-import { ReserveDetail } from "$/(dataEntry)/reserve/_schema";
+import {
+  ErrorResponse,
+  ReserveDataResponse,
+  ReserveDetail,
+} from "$/(dataEntry)/reserve/_schema";
 import { Button } from "$/_ui/atoms/button";
 import clsx from "clsx";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useId, useState } from "react";
 
-export default function RegistUserInfoDialog({
+export default function RegistUserInfoDialogForm({
   action,
   children,
 }: {
@@ -63,7 +67,6 @@ export default function RegistUserInfoDialog({
           }
           // 登録
           const { realName, tel, time } = result.data;
-          setOpen(false);
           console.log("registData", realName, tel, time);
           const res = await fetch(`/reserve/${time}/details/register`, {
             body: formData,
@@ -72,9 +75,27 @@ export default function RegistUserInfoDialog({
           const data = await res.json();
           console.log("responseData", data);
           // 判定
-          // TODO 判定処理を入れる
-          // 画面移動
-          router.push("/reserve/completed");
+          const respDataReturn = ReserveDataResponse.safeParse(data);
+          if (respDataReturn.success === true) {
+            // 成功の場合
+            setOpen(false);
+            const { time } = respDataReturn.data;
+            const date = new Date(time);
+            alert(
+              `予約が完了しました。\n（${date.getMonth()}月${
+                date.getDate() - 1
+              }日 ${date.getHours()}時）`
+            );
+            // 画面移動
+            router.push("/reserve/completed");
+          } else {
+            // エラーの場合
+            const errorDataReturn = ErrorResponse.safeParse(data);
+            if (errorDataReturn.success === true) {
+              const { message } = errorDataReturn.data;
+              alert(message);
+            }
+          }
         }}
         // FIXME: https://github.com/vercel/next.js/issues/54676 の不具合でServer Actionでredirectが使えないので、onSubmitでAPIを叩くようにする
         // action={action}

@@ -17,3 +17,19 @@ export const ReserveDetail = zfd.formData({
 export const ReserveData = zfd.formData({
   unixTime: zfd.numeric(z.number().nonnegative()),
 });
+
+/**
+ * APIのレスポンスのスキーマー、zodを使う。
+ */
+export const ReserveDataResponse = z.object({
+  name: z.string(),
+  tel: z.string(),
+  time: z.number(),
+});
+
+/**
+ * APIのエラーレスポンスのスキーマー、zodを使う。
+ */
+export const ErrorResponse = z.object({
+  message: z.string(),
+});
