@@ -59,7 +59,6 @@ export default function ReservedDateTimeSelector({
         reservedTimeList={reservedTimeList}
         unixTime={unixTime}
       />
-      <input name="unixTime" type="hidden" value={unixTime} />
     </form>
   );
 }

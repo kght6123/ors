@@ -10,6 +10,7 @@ export interface Props {
   day: number;
   month: number;
   onChange?: (year: number, month: number, day: number) => void;
+  readonly?: boolean;
   year: number;
 }
 
@@ -24,7 +25,7 @@ const getDaysArray = (year: number, month: number) => {
   );
 };
 
-const Base = ({ className, day, month, onChange, year }: Props) => {
+const Base = ({ className, day, month, onChange, readonly, year }: Props) => {
   const [firstDay, setFirstDay] = useState(getDayNumber(year, month, 1));
   const [daysArray, setDaysArray] = useState(getDaysArray(year, month));
   return (
@@ -33,38 +34,46 @@ const Base = ({ className, day, month, onChange, year }: Props) => {
         className="absolute
       top-3 text-sm font-black text-slate-500"
       >
-        <Select.Transparent
-          onChange={(e) => {
-            onChange && onChange(Number(e.target.value), month, 1);
-            setFirstDay(getDayNumber(Number(e.target.value), month, 1));
-            setDaysArray(getDaysArray(Number(e.target.value), month));
-          }}
-          size="sm"
-          value={year}
-        >
-          {Array.from({ length: 10 }, (_, i) => year + i).map((value) => (
-            <Option key={value} value={value}>
-              {value}年
-            </Option>
-          ))}
-        </Select.Transparent>
+        {readonly ? (
+          <span>{year}年</span>
+        ) : (
+          <Select.Transparent
+            onChange={(e) => {
+              onChange && onChange(Number(e.target.value), month, 1);
+              setFirstDay(getDayNumber(Number(e.target.value), month, 1));
+              setDaysArray(getDaysArray(Number(e.target.value), month));
+            }}
+            size="sm"
+            value={year}
+          >
+            {Array.from({ length: 10 }, (_, i) => year + i).map((value) => (
+              <Option key={value} value={value}>
+                {value}年
+              </Option>
+            ))}
+          </Select.Transparent>
+        )}
       </div>
       <div className="mb-6 flex content-center items-center justify-center">
-        <Select.Transparent
-          onChange={(e) => {
-            onChange && onChange(year, Number(e.target.value), 1);
-            setFirstDay(getDayNumber(year, Number(e.target.value), 1));
-            setDaysArray(getDaysArray(year, Number(e.target.value)));
-          }}
-          size="xl"
-          value={month}
-        >
-          {Array.from({ length: 12 }, (_, i) => i + 1).map((value) => (
-            <Option key={value} value={value}>
-              {value}月
-            </Option>
-          ))}
-        </Select.Transparent>
+        {readonly ? (
+          <span className="font-extrabold">{month}月</span>
+        ) : (
+          <Select.Transparent
+            onChange={(e) => {
+              onChange && onChange(year, Number(e.target.value), 1);
+              setFirstDay(getDayNumber(year, Number(e.target.value), 1));
+              setDaysArray(getDaysArray(year, Number(e.target.value)));
+            }}
+            size="xl"
+            value={month}
+          >
+            {Array.from({ length: 12 }, (_, i) => i + 1).map((value) => (
+              <Option key={value} value={value}>
+                {value}月
+              </Option>
+            ))}
+          </Select.Transparent>
+        )}
       </div>
       <div className="grid grid-cols-7 place-content-center place-items-center text-sm font-black text-slate-700 [&>*]:h-14">
         <div className="text-red-600">日</div>
@@ -124,9 +133,10 @@ const Calendar = {
           date.setDate(day);
           props.onChange && props.onChange(date.getTime());
         }}
-        className={props.className}
+        className={clsx("max-w-md", props.className)}
         day={date.getDate()}
         month={date.getMonth() + 1}
+        readonly={props.onChange === undefined}
         year={date.getFullYear()}
       />
     );

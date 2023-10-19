@@ -10,7 +10,7 @@ import ReserveDateTimeSelector from "./_reservedDateTimeSelector";
 
 export const dynamic = "force-dynamic";
 
-const getReserves = async ({
+export const getReserves = async ({
   unixTime,
   userId,
 }: {
@@ -25,12 +25,22 @@ const getReserves = async ({
 > => {
   // 準備
   const date = new Date(unixTime);
-  const dayCounts = getDayCounts({
-    month: date.getMonth() + 1,
-    year: date.getFullYear(),
-  });
-  const fromDate = new Date(date.getFullYear(), date.getMonth(), 1);
-  const toDate = new Date(date.getFullYear(), date.getMonth(), dayCounts);
+  const fromDate = new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate(),
+    0,
+    0,
+    0
+  );
+  const toDate = new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate(),
+    23,
+    59,
+    59
+  );
   // 取得
   const reserveDateTimeList = db
     .select({
@@ -78,6 +88,12 @@ export default async function ReservedDateTime({
           unixTime={validUnixTime}
         />
       </Suspense>
+      <input
+        form="reservedDateTimeSelectorForm"
+        name="unixTime"
+        type="hidden"
+        value={unixTime}
+      />
     </>
   );
 }

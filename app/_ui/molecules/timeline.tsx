@@ -28,6 +28,7 @@ const Base = ({
   splitMinute = 60,
   value,
 }: Props) => {
+  console.log("value", value);
   const timelines = Array.from({ length: (12 * 60) / splitMinute });
   return (
     <ul className={clsx("relative flex flex-col", className)}>
@@ -99,7 +100,7 @@ const Timeline = {
           newDate.setSeconds(0);
           onChange && onChange(newDate.getTime(), value);
         }}
-        className={className}
+        className={clsx("max-w-md", className)}
         disabledTimeList={disabledTimeList}
         reservedTimeList={reservedTimeList}
         splitMinute={splitMinute}
