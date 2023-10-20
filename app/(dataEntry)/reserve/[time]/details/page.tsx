@@ -55,7 +55,7 @@ export default async function RegistUserInfo({
               />
             </Suspense>
           </div>
-          <div className="flex flex-col content-center items-center justify-center gap-4">
+          <div className="flex flex-col content-center items-center justify-start gap-4 pt-44">
             <Circle.Basic className="relative h-28 w-28" color="secondary">
               <UserPlusIcon className="absolute right-3 top-4 h-20 w-20 fill-none stroke-secondary-900 stroke-[.5]" />
             </Circle.Basic>
