@@ -1,6 +1,6 @@
 "use client";
 import { CalendarNow } from "$/_ui/molecules/calendar";
-import { TimelineSelector } from "$/_ui/molecules/timeline";
+import { TimelineBase } from "$/_ui/molecules/timeline";
 import React from "react";
 
 export default function ReservedDateTimeViewer({
@@ -13,7 +13,7 @@ export default function ReservedDateTimeViewer({
   return (
     <>
       <CalendarNow className="w-full" unixTime={unixTime} />
-      <TimelineSelector
+      <TimelineBase
         className="w-full"
         disabledTimeList={["12:00"]}
         reservedTimeList={reservedTimeList}

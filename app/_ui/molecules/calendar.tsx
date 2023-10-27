@@ -88,18 +88,18 @@ const Base = ({ className, day, month, onChange, readonly, year }: Props) => {
         ))}
         {daysArray.map((value, index) => (
           <button
+            aria-pressed={value === day}
             className={clsx(
               (firstDay + index + 1) % 7 === 0 && "text-blue-600",
               (firstDay + index + 1) % 7 === 1 && "text-red-600",
               // 選択した日付を強調する
               "aria-pressed:relative aria-pressed:after:absolute aria-pressed:after:-left-3 aria-pressed:after:top-2 aria-pressed:after:flex aria-pressed:after:h-10 aria-pressed:after:w-10 aria-pressed:after:content-center aria-pressed:after:items-center aria-pressed:after:justify-center aria-pressed:after:rounded-full aria-pressed:after:bg-indigo-600 aria-pressed:after:text-lg aria-pressed:after:text-white aria-pressed:after:content-[attr(data-day)]"
             )}
+            data-day={value}
+            key={value}
             onClick={() => {
               onChange && onChange(year, month, value);
             }}
-            aria-pressed={value === day}
-            data-day={value}
-            key={value}
             type="button"
           >
             {value}
@@ -123,6 +123,9 @@ const Calendar = {
     // const [day, setDay] = useState(now.getDate());
     return (
       <Base
+        className={clsx("max-w-md", props.className)}
+        day={date.getDate()}
+        month={date.getMonth() + 1}
         onChange={(year, month, day) => {
           // setYear(year);
           // setMonth(month);
@@ -133,9 +136,6 @@ const Calendar = {
           date.setDate(day);
           props.onChange && props.onChange(date.getTime());
         }}
-        className={clsx("max-w-md", props.className)}
-        day={date.getDate()}
-        month={date.getMonth() + 1}
         readonly={props.onChange === undefined}
         year={date.getFullYear()}
       />

@@ -8,6 +8,8 @@
   ],
   "plugins": ["perfectionist"],
   "rules": {
+    // "tailwindcss/no-arbitrary-value": "error",
+    // "tailwindcss/no-custom-classname": "off",
     "perfectionist/sort-objects": [
       "error",
       {

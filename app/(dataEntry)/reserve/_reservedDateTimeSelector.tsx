@@ -1,7 +1,7 @@
 "use client";
 import { ReserveData } from "$/(dataEntry)/reserve/_schema";
 import { CalendarNow } from "$/_ui/molecules/calendar";
-import { TimelineSelector } from "$/_ui/molecules/timeline";
+import { TimelineBase } from "$/_ui/molecules/timeline";
 import { useRouter } from "next/navigation";
 import React from "react";
 
@@ -16,6 +16,7 @@ export default function ReservedDateTimeSelector({
   const router = useRouter();
   return (
     <form
+      id="reservedDateTimeSelectorForm"
       onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         // 準備
@@ -39,23 +40,22 @@ export default function ReservedDateTimeSelector({
         );
         router.push(`/reserve/${date.getTime().toString()}/details`);
       }}
-      id="reservedDateTimeSelectorForm"
     >
       <CalendarNow
+        className="w-full"
         onChange={(unixTime) => {
           // setUnixTime(unixTime);
           router.push(`/reserve?unixTime=${unixTime}`);
         }}
-        className="w-full"
         unixTime={unixTime}
       />
-      <TimelineSelector
+      <TimelineBase
+        className="w-full"
+        disabledTimeList={["12:00"]}
         onChange={(unixTime) => {
           // setUnixTime(unixTime)
           router.push(`/reserve?unixTime=${unixTime}`);
         }}
-        className="w-full"
-        disabledTimeList={["12:00"]}
         reservedTimeList={reservedTimeList}
         unixTime={unixTime}
       />

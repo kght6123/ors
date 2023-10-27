@@ -1,16 +1,15 @@
 "use client"; // cosmosのために追加
 import clsx from "clsx";
-import React, { useState } from "react";
 
 // TODO: この辺りの問題があるため、他のatomなどと同様にオブジェクトで複数コンポーネントを返せない https://github.com/vercel/next.js/issues/41940
 
 export interface Props {
   className?: string;
   disabledTimeList?: string[];
-  onChange?: (date: Date, value: string) => void;
+  onChange?: (unixTime: number, value: string) => void;
   reservedTimeList?: string[];
   splitMinute?: number;
-  value?: string;
+  unixTime?: number;
 }
 
 const toHhMm = (date: Date) => {
@@ -26,12 +25,12 @@ const Base = ({
   onChange,
   reservedTimeList,
   splitMinute = 60,
-  value,
+  unixTime,
 }: Props) => {
-  console.log("value", value);
+  const value = toHhMm(new Date(unixTime || new Date()));
   const timelines = Array.from({ length: (12 * 60) / splitMinute });
   return (
-    <ul className={clsx("relative flex flex-col", className)}>
+    <ul className={clsx("relative flex max-w-md flex-col", className)}>
       {timelines.map((_value, index) => {
         const date = new Date(1900, 1 - 1, 1, 9, splitMinute * index, 0);
         const time = toHhMm(date);
@@ -60,10 +59,15 @@ const Base = ({
                 </div>
               ) : (
                 <button
-                  onClick={() => {
-                    onChange && onChange(date, time);
-                  }}
                   className="h-12 w-full"
+                  onClick={() => {
+                    const newDate = new Date(unixTime || new Date());
+                    newDate.setHours(date.getHours());
+                    newDate.setMinutes(date.getMinutes());
+                    newDate.setMilliseconds(0);
+                    newDate.setSeconds(0);
+                    onChange && onChange(newDate.getTime(), time);
+                  }}
                   type="button"
                 >
                   &nbsp;
@@ -79,37 +83,6 @@ const Base = ({
 
 const Timeline = {
   Base,
-  Selector: ({
-    className,
-    disabledTimeList,
-    onChange,
-    reservedTimeList,
-    splitMinute = 60,
-    unixTime,
-  }: Omit<Props, "onChange" | "value"> & {
-    onChange?: (unixTime: number, value: string) => void;
-    unixTime?: number;
-  }) => {
-    return (
-      <Base
-        onChange={(date, value) => {
-          const newDate = new Date(unixTime || new Date());
-          newDate.setHours(date.getHours());
-          newDate.setMinutes(date.getMinutes());
-          newDate.setMilliseconds(0);
-          newDate.setSeconds(0);
-          onChange && onChange(newDate.getTime(), value);
-        }}
-        className={clsx("max-w-md", className)}
-        disabledTimeList={disabledTimeList}
-        reservedTimeList={reservedTimeList}
-        splitMinute={splitMinute}
-        value={toHhMm(new Date(unixTime || new Date()))}
-      />
-    );
-  },
 };
 
 export const TimelineBase = Timeline.Base;
-
-export const TimelineSelector = Timeline.Selector;
