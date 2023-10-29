@@ -35,9 +35,10 @@ export default function ReservedDateTimeSelector({
           alert("予約時刻を選択してください。");
           return;
         }
-        alert(
-          "氏名や電話番号の登録が表示されない場合は、画面をリロードして予約日時の選択をやり直して下さい。（NEXT-1160）"
-        );
+        // 解消しているようなので、アラートを解除
+        // alert(
+        //   "氏名や電話番号の登録が表示されない場合は、画面をリロードして予約日時の選択をやり直して下さい。（NEXT-1160）"
+        // );
         router.push(`/reserve/${date.getTime().toString()}/details`);
       }}
     >

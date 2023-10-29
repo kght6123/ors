@@ -9,6 +9,7 @@ import HeaderFooter from "./_headerFooter";
 import ReserveDateTimeSelector from "./_reservedDateTimeSelector";
 
 export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export const getReserves = async ({
   unixTime,
@@ -17,11 +18,11 @@ export const getReserves = async ({
   unixTime: number;
   userId: string;
 }): Promise<
-  | {
-      id: number;
-      reserved_at: Date;
-      user_id: string;
-    }[]
+  {
+    id: number;
+    reserved_at: Date;
+    user_id: string;
+  }[]
 > => {
   // 準備
   const date = new Date(unixTime);
