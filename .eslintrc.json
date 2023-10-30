@@ -16,6 +16,7 @@
         "type": "natural",
         "order": "asc"
       }
-    ]
+    ],
+    "perfectionist/sort-imports": "off"
   }
 }
