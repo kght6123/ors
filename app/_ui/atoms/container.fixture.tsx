@@ -1,6 +1,5 @@
 import { Button } from "$/_ui/atoms/button";
 import { Container } from "$/_ui/atoms/container";
-import React from "react";
 
 export const Fixture = {
   basic: () => <Container.Basic>Container.Basic</Container.Basic>,

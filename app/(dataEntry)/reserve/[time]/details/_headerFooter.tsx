@@ -3,7 +3,6 @@ import { useHeaderFooter } from "$/(dataEntry)/_hooks";
 import { Button } from "$/_ui/atoms/button";
 import { ChevronLeftIcon } from "@heroicons/react/20/solid";
 import { useRouter } from "next/navigation";
-import React from "react";
 import { createPortal } from "react-dom";
 
 export default function HeaderFooter() {
@@ -20,14 +19,14 @@ export default function HeaderFooter() {
             <h1 className="text-base font-black">○○○○○○○ 予約登録・変更</h1>
             <div />
           </>,
-          headerEl
+          headerEl,
         )}
       {footerEl &&
         createPortal(
           <Button.Basic color="primary" form="registUserInfoForm" type="submit">
             予約する
           </Button.Basic>,
-          footerEl
+          footerEl,
         )}
     </>
   );

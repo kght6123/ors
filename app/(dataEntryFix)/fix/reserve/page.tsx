@@ -1,7 +1,6 @@
 import { db, reserveDateTimes } from "#/schema";
 import { authOptions } from "$/api/auth/[...nextauth]/route";
-import { getDayCounts } from "@/utils/datetime";
-import { between, gte, sql } from "drizzle-orm";
+import { between } from "drizzle-orm";
 import { getServerSession } from "next-auth/next";
 import { Suspense } from "react";
 
@@ -32,7 +31,7 @@ export const getReserves = async ({
     date.getDate(),
     0,
     0,
-    0
+    0,
   );
   const toDate = new Date(
     date.getFullYear(),
@@ -40,7 +39,7 @@ export const getReserves = async ({
     date.getDate(),
     23,
     59,
-    59
+    59,
   );
   // 取得
   const reserveDateTimeList = db

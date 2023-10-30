@@ -21,7 +21,7 @@ export default async function RegistUserInfo({
   // redirect("/reserve");
   // 準備
   const date = new Date(
-    time !== undefined ? parseInt(time) : new Date().getTime()
+    time !== undefined ? parseInt(time) : new Date().getTime(),
   );
   date.setMinutes(0);
   date.setSeconds(0);

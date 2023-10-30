@@ -1,5 +1,4 @@
 import { Input } from "$/_ui/atoms/input";
-import React from "react";
 
 export const Fixture = {
   accent: <Input.Basic color="accent" placeholder="accent" />,

@@ -1,12 +1,12 @@
 import { db, reserveDateTimes, reserveUserDetails } from "#/schema";
 import { ReserveDetail } from "$/(dataEntry)/reserve/_schema";
 import { authOptions } from "$/api/auth/[...nextauth]/route";
+import { getServerSession } from "next-auth/next";
 import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
-import { getServerSession } from "next-auth/next";
 
 export async function POST(
-  request: Request
+  request: Request,
   // { params }: { params: { time: string } }
 ) {
   // 準備
@@ -17,7 +17,7 @@ export async function POST(
   if (!userId) {
     return NextResponse.json(
       { message: "ログイン情報が存在しません。" },
-      { status: 401 }
+      { status: 401 },
     );
   }
   // 登録

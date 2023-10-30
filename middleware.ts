@@ -21,5 +21,5 @@ export default withAuth(
         else return true;
       },
     },
-  }
+  },
 );

@@ -47,7 +47,7 @@ const Select = {
             size === "sm" && "pr-4 text-sm",
             size === "xl" && "pr-6 text-xl font-black",
             size === "5xl" && "pr-9 text-5xl",
-            props.className
+            props.className,
           )}
         />
         <div className="pointer-events-none absolute right-0 top-0 h-full">

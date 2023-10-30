@@ -1,4 +1,4 @@
-import { Color, Rounded, Size } from "$/_ui";
+import { Color } from "$/_ui";
 import clsx from "clsx";
 import React from "react";
 
@@ -23,7 +23,7 @@ const Container = {
   Basic: (
     props: Props & {
       color?: Color;
-    }
+    },
   ) => {
     const { color = "secondary" } = props;
     return (
@@ -35,7 +35,7 @@ const Container = {
             "bg-primary-50 text-primary-950 hover:bg-primary-100",
           color === "secondary" &&
             "bg-secondary-50 text-secondary-950 hover:bg-secondary-100",
-          props.className
+          props.className,
         )}
       />
     );
@@ -44,7 +44,7 @@ const Container = {
     props: Props & {
       color?: Color;
       position?: "bottom" | "top";
-    }
+    },
   ) => {
     const { color = "secondary", position } = props;
     return (
@@ -58,7 +58,7 @@ const Container = {
             "bg-primary-50 text-primary-950 hover:bg-primary-100",
           color === "secondary" &&
             "bg-secondary-50 text-secondary-950 hover:bg-secondary-100 dark:bg-slate-950 dark:text-slate-50 dark:hover:bg-slate-950 dark:hover:text-slate-50",
-          props.className
+          props.className,
         )}
       />
     );

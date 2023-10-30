@@ -42,7 +42,7 @@ export const accounts = sqliteTable(
   },
   (account) => ({
     compoundKey: primaryKey(account.provider, account.providerAccountId),
-  })
+  }),
 );
 
 export const sessions = sqliteTable("session", {
@@ -62,19 +62,19 @@ export const verificationTokens = sqliteTable(
   },
   (vt) => ({
     compoundKey: primaryKey(vt.identifier, vt.token),
-  })
+  }),
 );
 
 export const reserveDateTimes = sqliteTable(
   "reserveDateTime",
   {
     created_at: integer("created_at").default(
-      sql`(strftime('%s', 'now', 'localtime'))`
+      sql`(strftime('%s', 'now', 'localtime'))`,
     ),
     id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
     reserved_at: integer("reserved_at", { mode: "timestamp_ms" }).notNull(),
     updated_at: integer("updated_at").default(
-      sql`(strftime('%s', 'now', 'localtime'))`
+      sql`(strftime('%s', 'now', 'localtime'))`,
     ),
     userId: text("userId")
       .notNull()
@@ -83,18 +83,18 @@ export const reserveDateTimes = sqliteTable(
   (table) => ({
     idx1: uniqueIndex("reserveDateTime_idx_1").on(table.reserved_at),
     // idx2: uniqueIndex("reserveDateTime_idx_2").on(table.userId),
-  })
+  }),
 );
 
 export const reserveUserDetails = sqliteTable("reserveUserDetails", {
   created_at: integer("created_at").default(
-    sql`(strftime('%s', 'now', 'localtime'))`
+    sql`(strftime('%s', 'now', 'localtime'))`,
   ),
   id: text("id").notNull().primaryKey(),
   realName: text("realName").notNull(),
   tel: text("tel").notNull(),
   updated_at: integer("updated_at").default(
-    sql`(strftime('%s', 'now', 'localtime'))`
+    sql`(strftime('%s', 'now', 'localtime'))`,
   ),
 });
 

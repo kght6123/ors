@@ -1,9 +1,13 @@
-import RegistUserInfoForm from "$/(dataEntry)/reserve/[time]/details/_registUserInfoForm";
+import { db, reserveDateTimes, reserveUserDetails } from "#/schema";
+import { ReserveDetail } from "$/(dataEntry)/reserve/_schema";
+import RegistUserInfoForm from "$/(dataEntryFix)/fix/reserve/[time]/details/_registUserInfoForm";
 import { Circle } from "$/_ui/atoms/circle";
 import { Input } from "$/_ui/atoms/input";
 import { authOptions } from "$/api/auth/[...nextauth]/route";
 import { UserPlusIcon } from "@heroicons/react/20/solid";
 import { getServerSession } from "next-auth/next";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { Suspense } from "react";
 
 import { getReserves } from "../../page";
@@ -21,7 +25,7 @@ export default async function RegistUserInfo({
   // redirect("/reserve");
   // 準備
   const date = new Date(
-    time !== undefined ? parseInt(time) : new Date().getTime()
+    time !== undefined ? parseInt(time) : new Date().getTime(),
   );
   date.setMinutes(0);
   date.setSeconds(0);
@@ -42,10 +46,86 @@ export default async function RegistUserInfo({
       "0" + reserveDateTime.reserved_at.getMinutes()
     ).slice(-2)}`;
   });
+  async function create(formData: FormData) {
+    "use server";
+    // バリデーション
+    const params = ReserveDetail.safeParse(formData);
+    if (params.success === false) {
+      console.error("validation error", params.error);
+      const pathName = params.error.errors
+        .map((e) =>
+          e.path.map((p) =>
+            p === "tel"
+              ? "電話番号"
+              : p === "realName"
+              ? "氏名"
+              : p === "time"
+              ? "予約時間"
+              : p,
+          ),
+        )
+        .join("、");
+      console.error(`${pathName}の入力に誤りがあります。`);
+      return { message: `${pathName}の入力に誤りがあります。` };
+    }
+    const session = await getServerSession(authOptions);
+    const userId = session?.user?.id;
+    // バリデーション
+    if (!userId) {
+      console.error(`ログイン情報が存在しません。`);
+      return { message: `ログイン情報が存在しません。` };
+    }
+    const { realName, tel, time } = params.data;
+    // 登録
+    const result = await db
+      .transaction(async (tx) => {
+        const r1 = db
+          .insert(reserveDateTimes)
+          .values({
+            reserved_at: new Date(time),
+            userId,
+          })
+          .run();
+        console.log(r1);
+        if (r1.changes !== 1) {
+          tx.rollback();
+          return { message: "予約に失敗しました。" };
+        }
+        const r2 = db
+          .insert(reserveUserDetails)
+          .values({
+            id: userId,
+            realName,
+            tel,
+          })
+          // 同一IDが存在する場合に更新する処理
+          .onConflictDoUpdate({
+            set: { realName, tel },
+            target: reserveUserDetails.id,
+          })
+          .run();
+        console.log(r2);
+        if (r2.changes !== 1) {
+          tx.rollback();
+          return { message: "予約に失敗しました。" };
+        }
+      })
+      .catch((e) => {
+        console.error(e);
+        return { message: "予約に失敗しました。" };
+      });
+    if (result?.message) {
+      console.error(result.message);
+      return { message: result.message };
+    } else {
+      revalidatePath("/fix/reserve");
+      redirect(`/fix/reserve/completed`);
+    }
+  }
   return (
     <>
       <HeaderFooter />
-      <RegistUserInfoForm /*action={create}*/>
+      <RegistUserInfoForm action={create}>
         <div className="flex flex-row justify-center gap-8 px-4 py-8">
           <div className="flex w-1/2 flex-col">
             <Suspense fallback={<div>Loading...</div>}>

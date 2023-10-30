@@ -4,10 +4,9 @@ import {
   ReserveDataResponse,
   ReserveDetail,
 } from "$/(dataEntry)/reserve/_schema";
-import { Button } from "$/_ui/atoms/button";
 import clsx from "clsx";
-import { useParams, usePathname, useRouter } from "next/navigation";
-import React, { useEffect, useId, useState } from "react";
+import { useRouter } from "next/navigation";
+import React from "react";
 
 export default function RegistUserInfoForm({
   children,
@@ -21,11 +20,15 @@ export default function RegistUserInfoForm({
   const router = useRouter();
   return (
     <form
+      // action={action}
+      className={clsx(modal ? "modal-box" : "w-full")}
+      // FIXME: https://github.com/vercel/next.js/issues/54676 の不具合でServer Actionでredirectが使えないので、onSubmitでAPIを叩くようにする
+      id="registUserInfoForm"
       onSubmit={async (e) => {
         e.preventDefault();
         // 準備
         const formData = new FormData(
-          (e.target as HTMLFormElement) || undefined
+          (e.target as HTMLFormElement) || undefined,
         );
         // バリデーション
         const result = ReserveDetail.safeParse(formData);
@@ -40,8 +43,8 @@ export default function RegistUserInfoForm({
                   ? "氏名"
                   : p === "time"
                   ? "予約時間"
-                  : p
-              )
+                  : p,
+              ),
             )
             .join("、");
           alert(`${pathName}の入力に誤りがあります。`);
@@ -66,7 +69,7 @@ export default function RegistUserInfoForm({
           alert(
             `予約が完了しました。\n（${date.getMonth()}月${
               date.getDate() - 1
-            }日 ${date.getHours()}時）`
+            }日 ${date.getHours()}時）`,
           );
           // 画面移動
           router.push("/reserve/completed");
@@ -79,10 +82,6 @@ export default function RegistUserInfoForm({
           }
         }
       }}
-      // FIXME: https://github.com/vercel/next.js/issues/54676 の不具合でServer Actionでredirectが使えないので、onSubmitでAPIを叩くようにする
-      // action={action}
-      className={clsx(modal ? "modal-box" : "w-full")}
-      id="registUserInfoForm"
     >
       {children}
     </form>

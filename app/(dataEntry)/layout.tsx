@@ -13,7 +13,7 @@ export default function RootLayout({
     <>
       <div
         className={clsx(
-          "relative flex h-full justify-center overflow-hidden overflow-y-auto bg-slate-50 pb-28 pt-20 dark:bg-slate-950"
+          "relative flex h-full justify-center overflow-hidden overflow-y-auto bg-slate-50 pb-28 pt-20 dark:bg-slate-950",
         )}
       >
         <Container.Floating

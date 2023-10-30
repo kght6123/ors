@@ -51,7 +51,7 @@ const Input = {
       color?: Color;
       rounded?: Rounded;
       size?: Size;
-    }
+    },
   ) => {
     const { color = "secondary", rounded = "full", size = "md" } = props;
     return (
@@ -67,7 +67,7 @@ const Input = {
           color === "accent" &&
             "bg-accent-100 text-accent-950 outline-accent-400 placeholder:text-accent-400 hover:bg-accent-200",
           size === "md" && "h-16 w-full px-8",
-          props.className
+          props.className,
         )}
       />
     );

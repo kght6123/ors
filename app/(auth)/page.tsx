@@ -31,7 +31,7 @@ export default async function Home() {
       </div>
       {/* NOTE: ログインセッション確認用、通常は表示しない */}
       <div className="hidden break-all text-xs">{`${JSON.stringify(
-        session
+        session,
       )}`}</div>
     </>
   );

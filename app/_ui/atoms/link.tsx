@@ -27,7 +27,7 @@ const Link = {
         {...props}
         className={clsx(
           "flex h-8 w-8 content-center items-center justify-center rounded-full border border-slate-300 text-center text-base font-bold outline-2 outline-offset-4 outline-slate-400 transition-transform delay-0 duration-75 ease-out focus:outline active:scale-95 active:outline",
-          props.className
+          props.className,
         )}
       />
     );
@@ -38,7 +38,7 @@ const Link = {
       color?: Color;
       rounded?: Rounded;
       size?: Size;
-    }
+    },
   ) => {
     const { color = "secondary", rounded = "full", size = "md" } = props;
     return (
@@ -52,7 +52,7 @@ const Link = {
           color === "secondary" &&
             "bg-secondary-500 text-secondary-50 outline-secondary-500 hover:bg-secondary-600",
           size === "md" && "h-16 w-full",
-          props.className
+          props.className,
         )}
       />
     );

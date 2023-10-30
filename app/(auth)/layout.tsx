@@ -9,7 +9,7 @@ export default function RootLayout({
   return (
     <div
       className={clsx(
-        "relative flex h-[100dvh] content-center items-center justify-center overflow-hidden bg-slate-50 dark:bg-slate-950"
+        "relative flex h-[100dvh] content-center items-center justify-center overflow-hidden bg-slate-50 dark:bg-slate-950",
       )}
     >
       <WorldMap className="absolute -right-32 h-[115svh] fill-slate-100/90 stroke-slate-950/5" />

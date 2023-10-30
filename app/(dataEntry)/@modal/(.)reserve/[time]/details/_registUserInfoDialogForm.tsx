@@ -1,14 +1,9 @@
 "use client";
 import RegistUserInfoForm from "$/(dataEntry)/reserve/[time]/details/_registUserInfoForm";
-import {
-  ErrorResponse,
-  ReserveDataResponse,
-  ReserveDetail,
-} from "$/(dataEntry)/reserve/_schema";
 import { Button } from "$/_ui/atoms/button";
 import clsx from "clsx";
 import { useParams, usePathname, useRouter } from "next/navigation";
-import React, { useEffect, useId, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function RegistUserInfoDialogForm({
   action,
@@ -34,7 +29,7 @@ export default function RegistUserInfoDialogForm({
     <div
       className={clsx(
         "modal modal-bottom sm:modal-middle",
-        open && "modal-open"
+        open && "modal-open",
       )}
       key={pathName}
     >

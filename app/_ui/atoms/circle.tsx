@@ -16,7 +16,7 @@ const Circle = {
   Basic: (
     props: Props & {
       color?: Color;
-    }
+    },
   ) => {
     const { color = "secondary" } = props;
     return (
@@ -26,7 +26,7 @@ const Circle = {
           "rounded-full",
           color === "secondary" &&
             "bg-secondary-100 text-primary-950 hover:bg-secondary-200",
-          props.className
+          props.className,
         )}
       />
     );

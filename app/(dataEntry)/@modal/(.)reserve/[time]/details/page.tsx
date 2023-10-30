@@ -3,7 +3,6 @@ import { Circle } from "$/_ui/atoms/circle";
 import { Input } from "$/_ui/atoms/input";
 import { UserPlusIcon } from "@heroicons/react/20/solid";
 // import { redirect } from "next/navigation";
-import React from "react";
 
 export default function RegistUserInfo() {
   // FIXME: https://github.com/vercel/next.js/issues/54676 の不具合でServer Actionでredirectが使えないので、onSubmitでAPIを叩くようにする

@@ -1,7 +1,7 @@
 "use client"; // cosmosのために追加
 import { Option, Select } from "$/_ui/atoms/select";
 import clsx from "clsx";
-import React, { useState } from "react";
+import { useState } from "react";
 
 // TODO: この辺りの問題があるため、他のatomなどと同様にオブジェクトで複数コンポーネントを返せない https://github.com/vercel/next.js/issues/41940
 
@@ -21,7 +21,7 @@ const getDayNumber = (year: number, month: number, day: number) => {
 const getDaysArray = (year: number, month: number) => {
   return Array.from(
     { length: new Date(year, month, 0).getDate() },
-    (_, i) => i + 1
+    (_, i) => i + 1,
   );
 };
 
@@ -93,7 +93,7 @@ const Base = ({ className, day, month, onChange, readonly, year }: Props) => {
               (firstDay + index + 1) % 7 === 0 && "text-blue-600",
               (firstDay + index + 1) % 7 === 1 && "text-red-600",
               // 選択した日付を強調する
-              "aria-pressed:relative aria-pressed:after:absolute aria-pressed:after:-left-3 aria-pressed:after:top-2 aria-pressed:after:flex aria-pressed:after:h-10 aria-pressed:after:w-10 aria-pressed:after:content-center aria-pressed:after:items-center aria-pressed:after:justify-center aria-pressed:after:rounded-full aria-pressed:after:bg-indigo-600 aria-pressed:after:text-lg aria-pressed:after:text-white aria-pressed:after:content-[attr(data-day)]"
+              "aria-pressed:relative aria-pressed:after:absolute aria-pressed:after:-left-3 aria-pressed:after:top-2 aria-pressed:after:flex aria-pressed:after:h-10 aria-pressed:after:w-10 aria-pressed:after:content-center aria-pressed:after:items-center aria-pressed:after:justify-center aria-pressed:after:rounded-full aria-pressed:after:bg-indigo-600 aria-pressed:after:text-lg aria-pressed:after:text-white aria-pressed:after:content-[attr(data-day)]",
             )}
             data-day={value}
             key={value}
@@ -158,7 +158,7 @@ const Calendar = {
       <div
         className={clsx(
           "grid grid-rows-3 gap-4 sm:grid-cols-3",
-          props.className
+          props.className,
         )}
       >
         <Base

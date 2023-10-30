@@ -2,7 +2,6 @@
 import { useHeaderFooter } from "$/(dataEntry)/_hooks";
 import { Button } from "$/_ui/atoms/button";
 import NextLink from "next/link";
-import React from "react";
 import { createPortal } from "react-dom";
 
 export default function HeaderFooter() {
@@ -18,14 +17,14 @@ export default function HeaderFooter() {
             </h1>
             <div />
           </>,
-          headerEl
+          headerEl,
         )}
       {footerEl &&
         createPortal(
           <NextLink href="/fix/reserve">
             <Button.Basic color="secondary">予約を追加する</Button.Basic>
           </NextLink>,
-          footerEl
+          footerEl,
         )}
     </>
   );

@@ -18,7 +18,7 @@ const Square = {
       color?: Color;
       rounded?: Rounded;
       tone?: Tone;
-    }
+    },
   ) => {
     const { color = "secondary", rounded, tone } = props;
     return (
@@ -40,7 +40,7 @@ const Square = {
           color === "danger" &&
             color === "danger" &&
             "bg-danger-500 text-danger-50 hover:bg-danger-600",
-          props.className
+          props.className,
         )}
       />
     );

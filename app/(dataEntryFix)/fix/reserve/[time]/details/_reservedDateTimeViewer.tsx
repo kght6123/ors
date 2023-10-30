@@ -1,7 +1,6 @@
 "use client";
 import { CalendarNow } from "$/_ui/molecules/calendar";
 import { TimelineBase } from "$/_ui/molecules/timeline";
-import React from "react";
 
 export default function ReservedDateTimeViewer({
   reservedTimeList,
